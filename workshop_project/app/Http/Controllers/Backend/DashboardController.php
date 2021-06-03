@@ -44,6 +44,6 @@ class DashboardController extends Controller
 
     public function listVideo()
     {
-      return view('backend.list_video');
+      
     }
 }

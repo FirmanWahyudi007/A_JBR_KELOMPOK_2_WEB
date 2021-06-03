@@ -9,16 +9,25 @@
     <form>
         <div class="card-body">
             <div class="form-group">
-                <label for="yayasan">Judul</label>
-                <input type="text" class="form-control" name="yayasan" id="yayasan" placeholder="Masukkan Nama Yayasan">
+                <label for="acara">Acara</label>
+                <input type="text" class="form-control" name="acara" id="acara" placeholder="Masukkan Nama Acara">
             </div>
             <div class="form-group">
-                <label for="yayasan">Alamat</label>
-                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Masukkan Alamat Yayasan">
+                <label for="acara">Jam</label>
+                <input type="text" class="form-control" name="jam" id="jam" placeholder="Masukkan Nama Acara">
             </div>
             <div class="form-group">
-                <label for="notelp">No Telp</label>
-                <input type="text" class="form-control" name="notelp"  id="notelp" placeholder="Masukkan Nama No Telp">
+                <label>Date:</label>
+                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                    <input type="text" class="form-control datetimepicker-input" name="tanggal" data-target="#reservationdate" />
+                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="acara">Deskripsi</label>
+                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleInputFile">File input</label>

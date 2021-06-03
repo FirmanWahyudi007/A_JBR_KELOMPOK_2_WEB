@@ -109,13 +109,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{url('admin/list_video')}}" class="nav-link">
+                            <a href="{{route('video.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>List Video</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{url('admin/tambah_video')}}" class="nav-link">
+                            <a href="{{route('video.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah Video</p>
                             </a>
