@@ -1,9 +1,23 @@
 @include('backend/layouts.header')
-<main class="content-wrapper">
-    <div class="mdc-layout-grid">
-        <div class="mdc-layout-grid__inner">
-            @yield('content')
+  
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          @yield('pagecontent')
         </div>
-    </div>
-</main>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        @yield('content')
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
 @include('backend/layouts.footer')
