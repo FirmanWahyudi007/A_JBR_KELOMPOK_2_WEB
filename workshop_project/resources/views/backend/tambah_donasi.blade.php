@@ -26,7 +26,22 @@
                 <input type="text" class="form-control" name="penerima" id="penerima" placeholder="Masukkan Nama Penerima">
             </div>
             <div class="form-group">
-                <label for="exampleInputFile">File input</label>
+                <label for="keterangan">Keterangan</label>
+                <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">File input Benner</label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                    </div>
+                    <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                    </div>
+                    </div>
+            <div class="form-group">
+                <label for="exampleInputFile">File input Dokumentasi</label>
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="exampleInputFile">
