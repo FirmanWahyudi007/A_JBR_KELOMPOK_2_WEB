@@ -21,12 +21,12 @@ Route::get('/coba', function () {
 });
 Route::group(['namespace' => 'Backend'] ,function(){
   Route::resource('video', VideoController::class);
+  Route::resource('yayasan', YayasanController::class);
   Route::get('admin','DashboardController@index');
   Route::get('admin/data_donatur','DashboardController@dataDonatur');
   Route::get('admin/data_donasi','DashboardController@dataDonasi');
   Route::get('admin/tambah_donasi','DashboardController@tambahDonasi');
-  Route::get('admin/data_yayasan','DashboardController@dataYayasan');
-  Route::get('admin/tambah_yayasan','DashboardController@tambahYayasan');
+ // Route::get('admin/tambah_yayasan','DashboardController@tambahYayasan');
   Route::get('admin/tambah_video','DashboardController@tambahVideo');
   Route::get('admin/list_video','DashboardController@listVideo');
 });

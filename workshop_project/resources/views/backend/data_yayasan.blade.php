@@ -11,21 +11,29 @@
                         <th>Nama Yayasan</th>
                         <th>Alamat</th>
                         <th>No Telp</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($yayasan as $item)   
                     <tr>
-                        <td class="text-left">1</td>
-                        <td>Yayasan Nanda Delisha</td>
-                        <td>Tamansari, Kec. Bondowoso, Kabupaten Bondowoso</td>
-                        <td>02123546450</td>
+                        <td>{{ $item->nama_yayasan }}</td>
+                        <td>{{ $item->alamat }}</td>
+                        <td>{{ $item->no_telp }}</td>
+                        <td>
+                            <div>
+                                <form action="{{ route('yayasan.destroy',$item->id) }}" method="POST">
+                                <a href="{{ route('yayasan.edit',$item->id) }}" class="btn btn-warning">
+                                <i class="fa fa-edit"></i></a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Pakah Anda Yakin Ingin Menghapus Data Ini?')">
+                                <i class="fa fa-trash-o"></i></button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="text-left">2</td>
-                        <td>Rumah Belajar Autis Sarwahita</td>
-                        <td>Peguyangan, Kec. Denpasar Utara, Kota Denpasar, Bali</td>
-                        <td>02168029431</td>
-                    </tr>
+                   @endforeach                
                 </tbody>
             </table>
         </div>
