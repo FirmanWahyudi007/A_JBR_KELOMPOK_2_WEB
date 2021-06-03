@@ -11,31 +11,31 @@
                         <th>Tanggal</th>
                         <th>Nama Donasi</th>
                         <th>Penerima</th>
-                        <th>Dana Masuk</th>
+                        <th>Keterangan Dana Masuk</th>
                     </tr>
                 </thead>
                 <tbody>
+                @foreach($donasi as $item)
                     <tr>
-                        <td class="text-left">1</td>
-                        <td>05/01/2021</td>
-                        <td>Donasi untuk Yayasan Nanda Delisha</td>
-                        <td>Yayasan Nanda Delisha</td>
-                        <td>Rp.5,958,104.00</td>
+                       
+                        <td>{{ $item->tanggal }}</td>
+                        <td>{{ $item->nama_donasi }}</td>
+                        <td>{{ $item->penerima }}</td>
+                        <td>{{ $item->keterangan }}</td>
+                        <td>
+                            <div>
+                                <form action="{{ route('donasi.destroy',$item->id) }}" method="POST">
+                                <a href="{{ route('donasi.edit',$item->id) }}" class="btn btn-warning">
+                                <i class="fa fa-edit"></i></a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Pakah Anda Yakin Ingin Menghapus Data Ini?')">
+                                <i class="fa fa-trash-o"></i></button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <td class="text-left">2</td>
-                        <td>17/02/2021</td>
-                        <td>Anak-anak Dengan Autisme Perlu Sekolah</td>
-                        <td>Anak - anak Autisme</td>
-                        <td>Rp.4,500,000.00</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">3</td>
-                        <td>03/03/2021</td>
-                        <td>Donasi Untuk Rumah Belajar Autis Sarwahita</td>
-                        <td>Rumah Belajar Autis Sarwahita</td>
-                        <td>Rp.10,500,000.00</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -10,7 +10,8 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="donasi">Donasi</label>
-                <input type="text" class="form-control" name="donasi" id="donasi" placeholder="Masukkan Nama Donasi">
+                <input type="text" class="form-control" name="donasi" id="donasi" placeholder="Masukkan Nama Donasi"
+                    value="{{ isset($donasi) ? $donasi->nama_yayasan : '' }}">
             </div>
             <div class="form-group">
                 <label>Date:</label>
@@ -23,11 +24,13 @@
             </div>
             <div class="form-group">
                 <label for="penerima">Penerima</label>
-                <input type="text" class="form-control" name="penerima" id="penerima" placeholder="Masukkan Nama Penerima">
+                <input type="text" class="form-control" name="penerima" id="penerima" placeholder="Masukkan Nama Penerima"
+                value="{{ isset($donasi) ? $donasi->penerima : '' }}">
             </div>
             <div class="form-group">
                 <label for="keterangan">Keterangan</label>
-                <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan">
+                <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan"
+                value="{{ isset($keterangan) ? $keterangan->keterangan : '' }}">
             </div>
             <div class="form-group">
                 <label for="exampleInputFile">File input Benner</label>

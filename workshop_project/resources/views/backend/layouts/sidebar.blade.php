@@ -63,13 +63,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{url('admin/data_donasi')}}" class="nav-link">
+                            <a href="{{url('donasi')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Donasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{url('admin/tambah_donasi')}}" class="nav-link">
+                            <a href="{{url('donasi/create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah Donasi</p>
                             </a>
