@@ -20,6 +20,7 @@ Route::get('/coba', function () {
     return view('welcome');
 });
 Route::group(['namespace' => 'Backend'] ,function(){
+  Route::resource('video', VideoController::class);
   Route::get('admin','DashboardController@index');
   Route::get('admin/data_donatur','DashboardController@dataDonatur');
   Route::get('admin/data_donasi','DashboardController@dataDonasi');
