@@ -6,31 +6,24 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form>
+    <form id="yayasan_form" method="POST" action="{{ isset($yayasan)?route('yayasan.update',$yayasan->id):route('yayasan.store') }}">
+        {!! csrf_field() !!}
+        {!! isset($pengalaman_kerja) ? method_field('PUT'):'' !!}
         <div class="card-body">
             <div class="form-group">
                 <label for="yayasan">Judul</label>
-                <input type="text" class="form-control" name="yayasan" id="yayasan" placeholder="Masukkan Nama Yayasan">
+                <input type="text" class="form-control" name="yayasan" id="yayasan" placeholder="Masukkan Nama Yayasan" 
+                value="{{ isset($yayasan) ? $yayasan->nama_yayasan : '' }}">
             </div>
             <div class="form-group">
                 <label for="yayasan">Alamat</label>
-                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Masukkan Alamat Yayasan">
+                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Masukkan Alamat Yayasan"
+                value="{{ isset($yayasan) ? $yayasan->alamat : '' }}">
             </div>
             <div class="form-group">
                 <label for="notelp">No Telp</label>
-                <input type="text" class="form-control" name="notelp"  id="notelp" placeholder="Masukkan Nama No Telp">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                    </div>
-                    <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                    </div>
-                </div>
+                <input type="text" class="form-control" name="notelp"  id="notelp" placeholder="Masukkan Nama No Telp"
+                value="{{ isset($yayasan) ? $yayasan->no_telp : ''}}">
             </div>
         </div>
         <!-- /.card-body -->
