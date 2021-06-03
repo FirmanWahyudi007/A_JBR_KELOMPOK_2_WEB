@@ -6,9 +6,10 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form id="yayasan_form" method="POST" action="{{ isset($yayasan)?route('yayasan.update',$yayasan->id):route('yayasan.store') }}">
+    <form id="yayasan_form" method="POST" action="{{ isset($yayasan)? route('yayasan.update',$yayasan->id) :route('yayasan.store') }}">
         {!! csrf_field() !!}
-        {!! isset($pengalaman_kerja) ? method_field('PUT'):'' !!}
+        {!! isset($yayasan) ? method_field('PUT'):'' !!}
+        <input type="hidden" name="id" value="{{ $yayasan->id }}"> <br>
         <div class="card-body">
             <div class="form-group">
                 <label for="yayasan">Judul</label>

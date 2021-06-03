@@ -31,10 +31,10 @@ class YayasanController extends Controller
     }
     public function update(Request $request){
          DB::table('yayasan')->where('id',$request->id)->update([
-                'nama_yayasan'=>$request->nama_yayasan,
+                'nama_yayasan'=>$request->yayasan,
                 'alamat'=>$request->alamat,
-                'no_telp'=>$request->no_telp,
-                'dokumentasi'=>$request->dokumentasi
+                'no_telp'=>$request->notelp,
+                'dokumentasi'=>'1'
             ]);
             return redirect()->route('yayasan.index')->with('success','Data Yayasan Telah Diperbaharui');
             }
