@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label for="acara">Deskripsi</label>
-                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleInputFile">File input</label>
