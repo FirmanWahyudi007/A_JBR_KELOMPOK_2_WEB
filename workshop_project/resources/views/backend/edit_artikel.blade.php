@@ -6,37 +6,38 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="post" action="{{route('artikel.update', $data['artikel']->id)}}">
+    <form method="post" action="{{route('artikel.update', $artikel->id)}}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <div class="form-group">
                 <label for="url">Url Artikel</label>
-                <input type="text" class="form-control" id="url_artikel" name="url_artikel" placeholder="Masukkan Url artikel" value="{{$data['artikel']->url_artikel}}">
+                <input type="text" class="form-control" id="url_artikel" name="url_artikel" placeholder="Masukkan Url artikel" value="{{$artikel->url_artikel}}">
             </div>
             <div class="form-group">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul_artikel" name="judul_artikel" placeholder="Masukkan Judul artikel" value="{{$data['artikel']->judul_artikel}}">
+                <input type="text" class="form-control" id="judul_artikel" name="judul_artikel" placeholder="Masukkan Judul artikel" value="{{$artikel->judul_artikel}}">
             </div>
             <div class="form-group">
                 <label>isi</label>
-                <textarea name="isi_artikel" class="form-control form-control-user ckeditor" id="ckeditor" cols="30" rows="10" placeholder="Isi Artikel">{{$data['artikel']->isi_artikel}}</textarea>
+                <textarea name="isi_artikel" class="form-control form-control-user ckeditor" id="ckeditor" cols="30" rows="10" placeholder="Isi Artikel">{{$artikel->isi_artikel}}</textarea>
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
-                    <input type="date" class="form-control form-control-user" id="tanggal" name="tanggal" value="{{$data['artikel']->tanggal}}"/>
+                    <input type="date" class="form-control form-control-user" id="tanggal" name="tanggal" value="{{$artikel->tanggal}}"/>
             </div>
             
             <div class="form-group">
                 <label for="exampleInputFile">File input foto</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="sampul" name="sampul">
+                        <input type="file" class="custom-file-input" id="sampul" name="sampul" onchange="previewFile(this)">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">Upload</span>
                     </div>
                 </div>
+                <img id="previewImg" src="{{asset('img')}}/{{ $artikel->sampul}}" alt="profile image" style="max-width: 130px; margin-top:20px;">
             </div>
         </div>
         <!-- /.card-body -->
@@ -236,5 +237,17 @@
         myDropzone.removeAllFiles(true)
     }
     // DropzoneJS Demo Code End
+</script>
+<script>
+    function previewFile(input){
+        var file = $("input[type=file]").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                $('#previewImg').attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
 </script>
 @endpush

@@ -54,7 +54,7 @@ class ArtikelController extends Controller
         $artikel -> isi_artikel = $isi_artikel;
         $artikel -> tanggal = $tanggal;
         $artikel -> save();
-        return redirect()->route('artikel.index')->with('success', 'Data Pengalaman Kerja Berhasil di Simpan!');
+        return redirect()->route('artikel.index')->with('success', 'Data Artikel Berhasil di Simpan!');
     }
 
     /**
@@ -76,10 +76,8 @@ class ArtikelController extends Controller
      */
     public function edit($id)
     {
-        $data = [
-            'artikel' => Artikel::where('id', $id)->first(),
-        ];
-        return view('backend.edit_artikel', compact('data'));
+        $artikel = Artikel::findorfail($id);
+        return view('backend.edit_artikel', compact('artikel'));
     }
 
     /**
@@ -91,14 +89,22 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Artikel::where('id', $id)->update([
-            'url_artikel' => $request->url_artikel,
-            'sampul' => $request->sampul,
-            'judul_artikel' => $request->judul_artikel,
-            'isi_artikel' => $request->isi_artikel,
-            'tanggal' => $request->tanggal,
-        ]);
-        return redirect()->route('artikel.index')->with('success', 'Data Pengalaman Kerja Berhasil di Update!');
+        $url_artikel = $request->url_artikel;
+        $sampul = $request->sampul;
+        $judul_artikel = $request->judul_artikel;
+        $isi_artikel = $request->isi_artikel;
+        $tanggal = $request->tanggal;
+        $sampulName = $sampul->getClientOriginalName();
+        $sampul->move(public_path('img'),$sampulName);
+
+        $artikel = Artikel::find($request->id);
+        $artikel -> url_artikel = $url_artikel;
+        $artikel -> sampul = $sampulName;
+        $artikel -> judul_artikel = $judul_artikel;
+        $artikel -> isi_artikel = $isi_artikel;
+        $artikel -> tanggal = $tanggal;
+        $artikel -> save();
+        return redirect()->route('artikel.index')->with('success', 'Data Artikel Berhasil di Update!');
     }
 
     /**
@@ -110,6 +116,6 @@ class ArtikelController extends Controller
     public function destroy($id)
     {
         Artikel::where('id', $id)->delete();
-        return redirect()->route('artikel.index')->with('success', 'Data Pengalaman Kerja Berhasil di Hapus!');
+        return redirect()->route('artikel.index')->with('success', 'Data Artikel Berhasil di Hapus!');
     }
 }
