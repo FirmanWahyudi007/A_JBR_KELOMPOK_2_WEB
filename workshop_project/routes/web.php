@@ -25,12 +25,5 @@ Route::group(['namespace' => 'Backend'] ,function(){
   Route::resource('yayasan', YayasanController::class);
   Route::resource('donasi', DonasiController::class);
   Route::resource('artikel', 'ArtikelController');
-  Route::get('admin','DashboardController@index');
-  Route::get('admin/data_donatur','DashboardController@dataDonatur');
-  Route::get('admin/data_donasi','DashboardController@dataDonasi');
-  Route::get('admin/tambah_donasi','DashboardController@tambahDonasi');
- // Route::get('admin/tambah_yayasan','DashboardController@tambahYayasan');
-  Route::get('admin/tambah_video','DashboardController@tambahVideo');
-  Route::get('admin/list_video','DashboardController@listVideo');
   Route::post('/artikel/update/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
 });
