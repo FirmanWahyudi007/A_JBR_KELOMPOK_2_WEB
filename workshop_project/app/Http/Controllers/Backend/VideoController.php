@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Video;
 
 class VideoController extends Controller
 {
@@ -35,7 +36,7 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
