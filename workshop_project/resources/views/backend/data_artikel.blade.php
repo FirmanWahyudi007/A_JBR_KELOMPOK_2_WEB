@@ -21,7 +21,7 @@
                     <tr>
                         <td>{{ $artikel->id}}</td>
                         <td>{{ $artikel->url_artikel}}</td>
-                        <td>{{ $artikel->sampul}}</td>
+                        <td><img src="{{asset('img')}}/{{ $artikel->sampul}}" style="max-width:60px;" /></td>
                         <td>{{ $artikel->judul_artikel}}</td>
                         <td>{{ $artikel->isi_artikel}}</td>
                         <td>{{ $artikel->tanggal}}</td>

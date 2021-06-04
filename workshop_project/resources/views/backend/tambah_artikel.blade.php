@@ -30,13 +30,14 @@
                 <label for="exampleInputFile">File input foto</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="sampul" name="sampul">
+                        <input type="file" class="custom-file-input" id="sampul" name="sampul" onchange="previewFile(this)">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">Upload</span>
                     </div>
                 </div>
+                <img id="previewImg" alt="profile image" style="max-width: 130px; margin-top:20px;">
             </div>
         </div>
         <!-- /.card-body -->
@@ -236,5 +237,17 @@
         myDropzone.removeAllFiles(true)
     }
     // DropzoneJS Demo Code End
+</script>
+<script>
+    function previewFile(input){
+        var file = $("input[type=file]").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                $('#previewImg').attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
 </script>
 @endpush

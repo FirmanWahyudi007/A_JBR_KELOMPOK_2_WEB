@@ -39,14 +39,21 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
-        Artikel::insert([
-            'url_artikel' => $request->url_artikel,
-            'sampul' => $request->sampul,
-            'judul_artikel' => $request->judul_artikel,
-            'isi_artikel' => $request->isi_artikel,
-            'tanggal' => $request->tanggal,
-        ]);
+        $url_artikel = $request->url_artikel;
+        $sampul = $request->sampul;
+        $judul_artikel = $request->judul_artikel;
+        $isi_artikel = $request->isi_artikel;
+        $tanggal = $request->tanggal;
+        $sampulName = $sampul->getClientOriginalName();
+        $sampul->move(public_path('img'),$sampulName);
 
+        $artikel = new Artikel();
+        $artikel -> url_artikel = $url_artikel;
+        $artikel -> sampul = $sampulName;
+        $artikel -> judul_artikel = $judul_artikel;
+        $artikel -> isi_artikel = $isi_artikel;
+        $artikel -> tanggal = $tanggal;
+        $artikel -> save();
         return redirect()->route('artikel.index')->with('success', 'Data Pengalaman Kerja Berhasil di Simpan!');
     }
 
