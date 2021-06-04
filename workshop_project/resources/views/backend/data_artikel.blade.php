@@ -13,33 +13,26 @@
                         <th>Judul</th>
                         <th>Isi Artikel</th>
                         <th>Tanggal</th>
+                        <th>Opsi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($data['artikel'] as $artikel)
                     <tr>
-                        <td class="text-left">1</td>
-                        <td>www.gombel.com</td>
-                        <td>Donasi untuk Yayasan Nanda Delisha</td>
-                        <td>Contoh 1</td>
-                        <td>adasdwdasdw</td>
-                        <td>03/06/2021</td>
+                        <td>{{ $artikel->id}}</td>
+                        <td>{{ $artikel->url_artikel}}</td>
+                        <td>{{ $artikel->sampul}}</td>
+                        <td>{{ $artikel->judul_artikel}}</td>
+                        <td>{{ $artikel->isi_artikel}}</td>
+                        <td>{{ $artikel->tanggal}}</td>
+                        <td><a href="{{route('artikel.edit', $artikel->id)}}"><i class="fa fa-edit"></i> Edit</a>
+                        <form action="{{route('artikel.destroy', $artikel->id)}}" method="post">
+                    @csrf
+                    @method('delete')
+                        <button class="btn btn-danger btn-xs" onclick="return confirm('Apakah anda ingin menghapusnya ?')"><i class="fa fa-trash"></i> Hapus</button>
+                        </form>
                     </tr>
-                    <tr>
-                        <td class="text-left">2</td>
-                        <td>www.gombel.com</td>
-                        <td>Donasi untuk Yayasan Nanda Delisha</td>
-                        <td>Contoh 1</td>
-                        <td>adasdwdasdw</td>
-                        <td>03/06/2021</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">2</td>
-                        <td>www.gombel.com</td>
-                        <td>Donasi untuk Yayasan Nanda Delisha</td>
-                        <td>Contoh 1</td>
-                        <td>adasdwdasdw</td>
-                        <td>03/06/2021</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
