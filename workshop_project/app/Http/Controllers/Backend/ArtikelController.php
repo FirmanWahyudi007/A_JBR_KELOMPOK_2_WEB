@@ -90,19 +90,20 @@ class ArtikelController extends Controller
     public function update(Request $request, $id)
     {
         $url_artikel = $request->url_artikel;
-        $sampul = $request->sampul;
         $judul_artikel = $request->judul_artikel;
         $isi_artikel = $request->isi_artikel;
         $tanggal = $request->tanggal;
-        $sampulName = $sampul->getClientOriginalName();
-        $sampul->move(public_path('img'),$sampulName);
-
         $artikel = Artikel::find($request->id);
         $artikel -> url_artikel = $url_artikel;
-        $artikel -> sampul = $sampulName;
         $artikel -> judul_artikel = $judul_artikel;
         $artikel -> isi_artikel = $isi_artikel;
         $artikel -> tanggal = $tanggal;
+        if (isset($request->sampul)) {
+            $sampul = $request->sampul;
+            $sampulName = $sampul->getClientOriginalName();
+            $sampul->move(public_path('img'),$sampulName);
+            $artikel -> sampul = $sampulName;
+        }
         $artikel -> save();
         return redirect()->route('artikel.index')->with('success', 'Data Artikel Berhasil di Update!');
     }
