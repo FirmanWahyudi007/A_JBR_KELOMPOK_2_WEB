@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ArtikelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,5 @@ Route::group(['namespace' => 'Backend'] ,function(){
  // Route::get('admin/tambah_yayasan','DashboardController@tambahYayasan');
   Route::get('admin/tambah_video','DashboardController@tambahVideo');
   Route::get('admin/list_video','DashboardController@listVideo');
+  Route::post('/artikel/update/{id}', [ArtikelController::class, 'update'])->name('artikel.update');
 });
