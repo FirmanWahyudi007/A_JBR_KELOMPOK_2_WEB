@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label for="donasi">Donasi</label>
                 <input type="text" class="form-control  @error('donasi') is-invalid @enderror" name="donasi" id="donasi"
-                    placeholder="Masukkan Nama Donasi" value="{{ isset($donasi) ? $donasi->donasi : '' }}">
+                    placeholder="Masukkan Nama Donasi" value="{{ isset($donasi) ? $donasi->nama_donasi : '' }}">
                 @error('donasi')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                 <label for="penerima">Penerima</label>
                 <input type="text" class="form-control @error('penerima') is-invalid @enderror" name="penerima"
                     id="penerima" placeholder="Masukkan Nama Penerima"
-                    value="{{ isset($donasi) ? $donasi->penerima : '' }}">
+                    value="{{ isset($donasi) ? $donasi->yayasan : '' }}">
                 @error('penerima')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
                 <label for="keterangan">Keterangan</label>
                 <textarea cols="10" rows="10" class="form-control @error('keterangan') is-invalid @enderror"
                     name="keterangan" id="keterangan" placeholder="Masukkan Keterangan"
-                    value="{{ isset($keterangan) ? $keterangan->keterangan : '' }}"></textarea>
+                    value="halooo">{{ isset($donasi) ? $donasi->keterangan : '' }}</textarea>
                 @error('keterangan')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

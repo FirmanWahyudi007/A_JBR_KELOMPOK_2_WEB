@@ -47,7 +47,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{url('admin/data_donatur')}}" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Data Donatur
                         </p>
@@ -55,7 +55,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
+                        <i class="nav-icon fas fa-donate"></i>
                         <p>
                             Donasi
                             <i class="fas fa-angle-left right"></i>
@@ -78,7 +78,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
+                        <i class="nav-icon fas fa-building"></i>
                         <p>
                             Yayasan
                             <i class="fas fa-angle-left right"></i>
@@ -101,7 +101,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
+                        <i class="nav-icon fas fa-video"></i>
                         <p>
                             Video
                             <i class="fas fa-angle-left right"></i>

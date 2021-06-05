@@ -9,8 +9,9 @@ use Illuminate\Support\Facades\DB;
 class YayasanController extends Controller
 {
     public function index(){
+        $no = 1;
         $yayasan = DB::table('yayasan')->get();
-        return view('backend.data_yayasan', compact('yayasan'));
+        return view('backend.data_yayasan', compact('yayasan','no'));
     }
     public function create(){
         $yayasan=null;

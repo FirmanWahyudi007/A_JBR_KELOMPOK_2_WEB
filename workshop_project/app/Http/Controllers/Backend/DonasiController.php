@@ -65,26 +65,32 @@ class DonasiController extends Controller
     }
     public function edit($id)
     {
-        $yayasan=DB::table('donasi')->where('id',$id)->first();
+        $donasi=DB::table('donasi')->where('id',$id)->first();
         return view('backend.tambah_donasi',compact('donasi'));
     }
     public function update(Request $request, $id)
     {
+        $date = Carbon::parse($request->tanggal);
         DB::table('donasi')->where('id',$request->id)->update([
-                'tanggal'=>$request->tanggal,
+                'tanggal'=>$date,
                 'nama_donasi'=>$request->donasi,
-                'penerima'=>$request->penerima,
+                'yayasan'=>$request->penerima,
                 'keterangan'=>$request->keterangan,
-            'dokumentasi'=>'1'
         ]);
         return redirect()->route('donasi.index')->with('success','Data Donasi Telah Diperbaharui');
     }
-    public function destroy($id)
+    public function nonactive($id)
     {
-        $gambar = DB::table('donasi')->where('id',$id)->first();
-	    File::delete('images/'.$gambar->banner);
-        File::delete('images/'.$gambar->dokumentasi);
-        DB::table('donasi')->where('id',$id)->delete();
-        return redirect()->route('donasi.index')->with('success','Data Donasi Telah Dihapus');
+        DB::table('donasi')->where('id',$id)->update([
+            'is_active'=>0,
+        ]);
+        return redirect()->route('donasi.index')->with('success','Data Donasi Telah Dinonaktifkan');
+    }
+    public function active($id)
+    {
+        DB::table('donasi')->where('id',$id)->update([
+            'is_active'=>1,
+        ]);
+        return redirect()->route('donasi.index')->with('success','Data Donasi Telah Diaktifkan');
     }
 }

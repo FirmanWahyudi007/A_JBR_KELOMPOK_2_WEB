@@ -45,7 +45,7 @@ class ArtikelController extends Controller
         $isi_artikel = $request->isi_artikel;
         $tanggal = $request->tanggal;
         $sampulName = $sampul->getClientOriginalName();
-        $sampul->move(public_path('img'),$sampulName);
+        $sampul->move(public_path('images'),$sampulName);
 
         $artikel = new Artikel();
         $artikel -> url_artikel = $url_artikel;
@@ -116,6 +116,8 @@ class ArtikelController extends Controller
      */
     public function destroy($id)
     {
+        $gambar = Artikel::find($id);
+        File::delete('images/'.$gambar->sampul);
         Artikel::where('id', $id)->delete();
         return redirect()->route('artikel.index')->with('success', 'Data Artikel Berhasil di Hapus!');
     }

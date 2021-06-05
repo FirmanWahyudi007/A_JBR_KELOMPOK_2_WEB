@@ -24,5 +24,4 @@
     <!-- /.card-footer-->
   </div>
   <!-- /.card -->
-</div>
 @endsection

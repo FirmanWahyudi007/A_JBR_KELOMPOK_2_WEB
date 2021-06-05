@@ -15,11 +15,11 @@ class CreateDonasiTable extends Migration
     {
         Schema::create('donasi', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_donasi',15);
+            $table->string('nama_donasi',45);
             $table->string('banner',20);
             $table->date('tanggal');
             $table->string('dokumentasi',20);
-            $table->string('keterangan',45);
+            $table->text('keterangan');
             $table->boolean('is_active');
             $table->integer('yayasan')->unsigned()->default(1);
             $table->timestamps();
