@@ -6,53 +6,98 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form>
+    <form id="donasi_form" method="POST" action="{{ isset($donasi)? route('donasi.update',$donasi->id) :route('donasi.store') }}" enctype="multipart/form-data">
+        {!! csrf_field() !!}
+        {!! isset($donasi) ? method_field('PUT'):'' !!}
+        <input type="hidden" name="id" value="{{ isset($donasi) ? $donasi->id : '' }}"> <br>
+        @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
         <div class="card-body">
             <div class="form-group">
                 <label for="donasi">Donasi</label>
-                <input type="text" class="form-control" name="donasi" id="donasi" placeholder="Masukkan Nama Donasi"
-                    value="{{ isset($donasi) ? $donasi->nama_yayasan : '' }}">
+                <input type="text" class="form-control  @error('donasi') is-invalid @enderror" name="donasi" id="donasi"
+                    placeholder="Masukkan Nama Donasi" value="{{ isset($donasi) ? $donasi->donasi : '' }}">
+                @error('donasi')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Date:</label>
                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" name="tanggal" data-target="#reservationdate" />
+                    <input type="text" class="form-control datetimepicker-input @error('tanggal') is-invalid @enderror"
+                        name="tanggal" data-target="#reservationdate" />
                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
+                    @error('tanggal')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
             <div class="form-group">
                 <label for="penerima">Penerima</label>
-                <input type="text" class="form-control" name="penerima" id="penerima" placeholder="Masukkan Nama Penerima"
-                value="{{ isset($donasi) ? $donasi->penerima : '' }}">
+                <input type="text" class="form-control @error('penerima') is-invalid @enderror" name="penerima"
+                    id="penerima" placeholder="Masukkan Nama Penerima"
+                    value="{{ isset($donasi) ? $donasi->penerima : '' }}">
+                @error('penerima')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="keterangan">Keterangan</label>
-                <input type="text" class="form-control" name="keterangan" id="keterangan" placeholder="Masukkan Keterangan"
-                value="{{ isset($keterangan) ? $keterangan->keterangan : '' }}">
+                <textarea cols="10" rows="10" class="form-control @error('keterangan') is-invalid @enderror"
+                    name="keterangan" id="keterangan" placeholder="Masukkan Keterangan"
+                    value="{{ isset($keterangan) ? $keterangan->keterangan : '' }}"></textarea>
+                @error('keterangan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
-                <label for="exampleInputFile">File input Benner</label>
+                <label for="banner">File input Banner</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <input type="file" class="custom-file-input @error('banner') is-invalid @enderror" name="banner"
+                            id="banner">
+                        <label class="custom-file-label" for="banner">Choose file</label>
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">Upload</span>
                     </div>
-                    </div>
+                    @error('banner')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+                </div>
+            </div>
             <div class="form-group">
-                <label for="exampleInputFile">File input Dokumentasi</label>
+                <label for="dokumentasi">File input Dokumentasi</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                        <input type="file" class="custom-file-input @error('dokumentasi') is-invalid @enderror"
+                            name="dokumentasi" id="dokumentasi">
+                        <label class="custom-file-label" for="dokumentasi">Choose file</label>
                     </div>
-                    <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                    </div>
+                    @error('dokumentasi')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
             </div>
         </div>

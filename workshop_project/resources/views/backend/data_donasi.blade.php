@@ -20,7 +20,7 @@
                        
                         <td>{{ $item->tanggal }}</td>
                         <td>{{ $item->nama_donasi }}</td>
-                        <td>{{ $item->penerima }}</td>
+                        <td>{{ $item->yayasan }}</td>
                         <td>{{ $item->keterangan }}</td>
                         <td>
                             <div>
