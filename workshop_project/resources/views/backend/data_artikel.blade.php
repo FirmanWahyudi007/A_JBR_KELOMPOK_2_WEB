@@ -2,7 +2,12 @@
 @section('content')
 <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-12">
     <div class="mdc-card p-0">
-        <h6 class="card-title card-padding pb-0 border-bottom">Data Donasi</h6>
+    @if(Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{Session::get('success')}}
+        </div>
+    @endif
+        <h6 class="card-title card-padding pb-0 border-bottom">Data Artikel</h6>
         <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -21,7 +26,7 @@
                     <tr>
                         <td>{{ $artikel->id}}</td>
                         <td>{{ $artikel->url_artikel}}</td>
-                        <td>{{ $artikel->sampul}}</td>
+                        <td><img src="{{asset('img')}}/{{ $artikel->sampul}}" style="max-width:100px;" /></td>
                         <td>{{ $artikel->judul_artikel}}</td>
                         <td>{{ $artikel->isi_artikel}}</td>
                         <td>{{ $artikel->tanggal}}</td>
