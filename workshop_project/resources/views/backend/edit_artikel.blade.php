@@ -37,7 +37,7 @@
                         <span class="input-group-text">Upload</span>
                     </div>
                 </div>
-                <img id="previewImg" src="{{asset('img')}}/{{ $artikel->sampul}}" alt="profile image" style="max-width: 130px; margin-top:20px;">
+                <img id="previewImg" src="{{asset('images')}}/{{ $artikel->sampul}}" alt="profile image" style="max-width: 130px; margin-top:20px;">
             </div>
         </div>
         <!-- /.card-body -->

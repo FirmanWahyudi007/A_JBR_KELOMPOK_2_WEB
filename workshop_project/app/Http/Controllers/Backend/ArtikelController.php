@@ -101,7 +101,7 @@ class ArtikelController extends Controller
         if (isset($request->sampul)) {
             $sampul = $request->sampul;
             $sampulName = $sampul->getClientOriginalName();
-            $sampul->move(public_path('img'),$sampulName);
+            $sampul->move(public_path('images'),$sampulName);
             $artikel -> sampul = $sampulName;
         }
         $artikel -> save();
