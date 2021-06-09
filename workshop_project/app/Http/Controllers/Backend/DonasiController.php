@@ -32,12 +32,6 @@ class DonasiController extends Controller
          ]);
         $tanggal = now();
         $date = Carbon::parse($request->tanggal);
-
-        // $t = $request->tanggal;
-        // //$newDate = Carbon::createFromFormat('mm/dd/yyyy', $t)->format('yyyy/mm/dd');
-        // $updatedDateFormat =  Carbon::createFromFormat('m-d-Y', $t)->format('Y-m-d H:i:s');
-
-        //dd($updatedDateFormat);
         if($request->hasfile('dokumentasi') && $request->hasfile('banner')){
             $dokumentasi = $request->file('dokumentasi');
             $banner = $request->file('banner');

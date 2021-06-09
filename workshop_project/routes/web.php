@@ -20,12 +20,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/coba', function () {
     return view('welcome');
 });
-Route::group(['namespace' => 'Backend'] ,function(){
+Route::group(['namespace' => 'Backend', 'middleware' => 'auth'] ,function(){
   Route::resource('video', VideoController::class);
   Route::resource('yayasan', YayasanController::class);
   Route::resource('donasi', DonasiController::class);
   Route::resource('artikel', 'ArtikelController');
-  Route::get('admin','DashboardController@index');
+  Route::get('admin','DashboardController@index')->name('admin');
   Route::put('donasi/nonactive/{donasi}','DonasiController@nonactive')->name('donasi.nonactive');
   Route::put('donasi/active/{donasi}','DonasiController@active')->name('donasi.active');
 });
+Route::group(['namespace' => 'Frontend'] ,function(){
+  Route::get('/','UserController@index')->name('home');
+});
+
+Auth::routes();
+
+Route::get('/user', [App\Http\Controllers\HomeController::class, 'index'])->name('user');

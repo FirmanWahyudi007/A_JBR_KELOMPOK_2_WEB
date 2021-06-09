@@ -22,8 +22,8 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="donasi">Donasi</label>
-                <input type="text" class="form-control  @error('donasi') is-invalid @enderror" name="donasi" id="donasi"
-                    placeholder="Masukkan Nama Donasi" value="{{ isset($donasi) ? $donasi->nama_donasi : '' }}">
+                <input type="text" class="form-control  @error('donasi') is-invalid @enderror" name="donasi" 
+                id="donasi" placeholder="Masukkan Nama Donasi" value="{{ isset($donasi) ? $donasi->nama_donasi : '' }}">
                 @error('donasi')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
