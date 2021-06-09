@@ -26,6 +26,8 @@ Route::group(['namespace' => 'Backend', 'middleware' => 'auth'] ,function(){
   Route::resource('donasi', DonasiController::class);
   Route::resource('artikel', 'ArtikelController');
   Route::get('admin','DashboardController@index')->name('admin');
+  Route::get('admin','DashboardController@index');
+  Route::post('artikel/{id}/edit', 'ArtikelController@update')->name('artikel.update');
   Route::put('donasi/nonactive/{donasi}','DonasiController@nonactive')->name('donasi.nonactive');
   Route::put('donasi/active/{donasi}','DonasiController@active')->name('donasi.active');
 });
