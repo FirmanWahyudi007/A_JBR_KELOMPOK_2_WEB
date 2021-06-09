@@ -37,7 +37,7 @@
                         <span class="input-group-text">Upload</span>
                     </div>
                 </div>
-                <img id="previewImg" alt="profile image" style="max-width: 130px; margin-top:20px;">
+                <img src="{{asset('images')}}/default.png" id="previewImg" alt="profile image" style="max-width: 200px; margin-top:20px; max-height: 200px">
             </div>
         </div>
         <!-- /.card-body -->

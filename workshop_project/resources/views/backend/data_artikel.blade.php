@@ -23,13 +23,16 @@
                     <td>{{ $artikel->judul_artikel}}</td>
                     <td>{{ $artikel->url_artikel}}</td>
                     <td>{{ $artikel->tanggal}}</td>
-                    <td><a href="{{route('artikel.edit', $artikel->id)}}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                        <form action="{{route('artikel.destroy', $artikel->id)}}" method="post">
+                    <td>
+                        <a href="{{route('artikel.edit', $artikel->id)}}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                        <form action="{{route('artikel.destroy', $artikel->id)}}" method="post" class="d-inline-block">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger"
-                                onclick="return confirm('Apakah anda ingin menghapusnya ?')"><i class="fa fa-trash"></i></button>
+                            <button class="btn btn-danger" onclick="return confirm('Apakah anda ingin menghapusnya ?')">
+                                <i class="fa fa-trash"></i>
+                            </button>
                         </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
