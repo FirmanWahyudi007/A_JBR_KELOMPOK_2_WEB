@@ -35,8 +35,8 @@ class DonasiController extends Controller
         if($request->hasfile('dokumentasi') && $request->hasfile('banner')){
             $dokumentasi = $request->file('dokumentasi');
             $banner = $request->file('banner');
-            $namadokumen = $dokumentasi->getClientOriginalName();
-            $namabanner = $banner->getClientOriginalName();
+            $namadokumen = $request->donasi.' '.$dokumentasi->getClientOriginalName();
+            $namabanner = $request->donasi.' '.$banner->getClientOriginalName();
             $pathdoukumen = $dokumentasi->move('images',$namadokumen);
             $pathbanner = $banner->move('images',$namabanner);
             DB::table('donasi')->insert([

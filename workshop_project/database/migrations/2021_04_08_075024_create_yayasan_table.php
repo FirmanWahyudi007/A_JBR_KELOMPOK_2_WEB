@@ -18,7 +18,7 @@ class CreateYayasanTable extends Migration
             $table->string('nama_yayasan',20);
             $table->string('alamat',40);
             $table->string('no_telp',15);
-            $table->string('dokumentasi',30);
+            $table->string('dokumentasi',255);
             $table->timestamps();
         });
     }

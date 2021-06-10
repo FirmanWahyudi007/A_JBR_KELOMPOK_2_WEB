@@ -16,7 +16,7 @@ class CreateAcaraTable extends Migration
         Schema::create('acara', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama_acara',20);
-            $table->string('thumbnail',20);
+            $table->text('thumbnail');
             $table->longText('deskripsi_acara');
             $table->date('tanggal_acara');
             $table->string('jam_acara',20);

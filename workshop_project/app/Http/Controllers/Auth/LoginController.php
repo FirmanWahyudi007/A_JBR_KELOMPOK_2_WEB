@@ -58,7 +58,7 @@ class LoginController extends Controller
       /* LAKUKAN LOGIN */
       if (auth()->attempt($login)) {
         //JIKA BERHASIL AKAN REDIRECT PADA HOME
-        return redirect()->route('admin');
+        return redirect()->route('admin.index');
       }
       //JIKA SALAH MAKA KEMBALI PADA HALAMAN LOGIN DAN AKAN ADA NOTIFIKASI YANG MUNCUL
       return redirect()->route('login')->with(['error' => 'Username atau Password salah!!!']);

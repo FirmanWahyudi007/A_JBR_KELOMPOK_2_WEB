@@ -6,24 +6,27 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form id="donasi_form" method="POST" action="{{ isset($donasi)? route('donasi.update',$donasi->id) :route('donasi.store') }}" enctype="multipart/form-data">
+    <form id="donasi_form" method="POST"
+        action="{{ isset($donasi)? route('donasi.update',$donasi->id) :route('donasi.store') }}"
+        enctype="multipart/form-data">
         {!! csrf_field() !!}
         {!! isset($donasi) ? method_field('PUT'):'' !!}
         <input type="hidden" name="id" value="{{ isset($donasi) ? $donasi->id : '' }}"> <br>
         @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-          @endif
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="card-body">
             <div class="form-group">
                 <label for="donasi">Donasi</label>
-                <input type="text" class="form-control  @error('donasi') is-invalid @enderror" name="donasi" 
-                id="donasi" placeholder="Masukkan Nama Donasi" value="{{ isset($donasi) ? $donasi->nama_donasi : '' }}">
+                <input type="text" class="form-control  @error('donasi') is-invalid @enderror" name="donasi" id="donasi"
+                    placeholder="Masukkan Nama Donasi"
+                    value="{{ isset($donasi) ? $donasi->nama_donasi : Request::old('donasi') }}">
                 @error('donasi')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -34,7 +37,8 @@
                 <label>Date:</label>
                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
                     <input type="text" class="form-control datetimepicker-input @error('tanggal') is-invalid @enderror"
-                        name="tanggal" data-target="#reservationdate" />
+                        name="tanggal" data-target="#reservationdate"
+                        value="{{ isset($donasi) ? $donasi->tanggal : Request::old('tanggal') }}" />
                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
@@ -49,7 +53,7 @@
                 <label for="penerima">Penerima</label>
                 <input type="text" class="form-control @error('penerima') is-invalid @enderror" name="penerima"
                     id="penerima" placeholder="Masukkan Nama Penerima"
-                    value="{{ isset($donasi) ? $donasi->yayasan : '' }}">
+                    value="{{ isset($donasi) ? $donasi->yayasan : Request::old('penerima') }}">
                 @error('penerima')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -60,7 +64,7 @@
                 <label for="keterangan">Keterangan</label>
                 <textarea cols="10" rows="10" class="form-control @error('keterangan') is-invalid @enderror"
                     name="keterangan" id="keterangan" placeholder="Masukkan Keterangan"
-                    value="halooo">{{ isset($donasi) ? $donasi->keterangan : '' }}</textarea>
+                    value="halooo">{{ isset($donasi) ? $donasi->keterangan : Request::old('keterangan') }}</textarea>
                 @error('keterangan')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -72,25 +76,26 @@
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input @error('banner') is-invalid @enderror" name="banner"
-                            id="banner">
+                            id="banner" onchange="previewFile(this)">
                         <label class="custom-file-label" for="banner">Choose file</label>
                     </div>
                     <div class="input-group-append">
                         <span class="input-group-text">Upload</span>
                     </div>
                     @error('banner')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                 </div>
+                <img id="previewImg" src="{{ isset($donasi) ? asset('images/'.$donasi->banner) : asset('images/default.png') }}" alt="profile image" style="max-width: 130px; margin-top:20px;">
             </div>
             <div class="form-group">
                 <label for="dokumentasi">File input Dokumentasi</label>
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input @error('dokumentasi') is-invalid @enderror"
-                            name="dokumentasi" id="dokumentasi">
+                            name="dokumentasi" id="dokumentasi" onchange="previewFile2(this)">
                         <label class="custom-file-label" for="dokumentasi">Choose file</label>
                     </div>
                     @error('dokumentasi')
@@ -99,6 +104,7 @@
                     </span>
                     @enderror
                 </div>
+                <img id="preview" src="{{ isset($donasi) ? asset('images/'.$donasi->dokumentasi) : asset('images/default.png') }}" alt="profile image" style="max-width: 130px; margin-top:20px;">
             </div>
         </div>
         <!-- /.card-body -->
@@ -298,5 +304,29 @@
         myDropzone.removeAllFiles(true)
     }
     // DropzoneJS Demo Code End
+</script>
+<script>
+    function previewFile(input){
+        var file = $("input[type=file]").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                $('#previewImg').attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+<script>
+    function previewFile2(input){
+        var file = $("input[type=file]").get(0).files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                $('#preview').attr("src", reader.result);
+            }
+            reader.readAsDataURL(file);
+        }
+    }
 </script>
 @endpush

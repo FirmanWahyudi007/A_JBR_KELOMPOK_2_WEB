@@ -18,7 +18,7 @@ class CreateVideosTable extends Migration
             $table->string('judul',45);
             $table->date('tanggal');
             $table->longText('deskripsi');
-            $table->string('video',20);
+            $table->string('video',255);
             $table->timestamps();
         });
     }
