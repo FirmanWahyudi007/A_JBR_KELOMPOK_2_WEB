@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\ArtikelController;
+use App\Http\Controllers\Frontend\ArtikelController as AppArtikelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => 'auth'] ,function(){
 });
 Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/','UserController@index')->name('home');
+  Route::get('/artikell', 'ArtikelController@index')->name('artikell.index');
 });
 
 Auth::routes();
