@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Artikel;
 use App\Models\Donasi;
+use App\Models\Yayasan;
 
 class UserController extends Controller
 {
@@ -14,6 +15,7 @@ class UserController extends Controller
         # code...
         $donasi = Donasi::all();
         $artikel = Artikel::all();
-        return view('frontend.home', compact('artikel','donasi'));
+        $yayasan = Yayasan::all();
+        return view('frontend.home', compact('artikel','donasi','yayasan'));
     }
 }

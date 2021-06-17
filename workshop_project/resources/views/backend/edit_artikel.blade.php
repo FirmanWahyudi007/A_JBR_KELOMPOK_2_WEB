@@ -6,7 +6,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="post" action="{{route('artikel.update', $artikel->id)}}" enctype="multipart/form-data">
+    <form method="post" action="{{route('artikel.updates', $artikel->id)}}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <div class="form-group">
