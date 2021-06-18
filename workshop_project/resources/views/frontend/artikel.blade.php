@@ -27,7 +27,7 @@
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block" href="single-blog.html">
+                                <a class="d-inline-block" href="{{route('artikell.show', $artikel->url_artikel)}}">
                                     <h2>{{$artikel->judul_artikel}}</h2>
                                 </a>
                                 <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">{{$artikel->isi_artikel}}</p>
