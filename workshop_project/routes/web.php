@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => 'auth'] ,function(){
 Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/','UserController@index')->name('home');
   Route::get('/artikell', 'ArtikelController@index')->name('artikell.index');
+  Route::get('/artikell/{url_artikel}', 'ArtikelController@show')->name('artikell.show');
 });
 
 Auth::routes();

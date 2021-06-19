@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Artikel;
-
+use Illuminate\Support\Facades\DB;
 class ArtikelController extends Controller
 {
     /**
@@ -48,9 +48,10 @@ class ArtikelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($url_artikel)
     {
-        //
+        $artikel = DB::table('artikel')->where('url_artikel', $url_artikel)->first();
+        return view('frontend.detail_artikel', ['artikel'=>$artikel]);
     }
 
     /**
