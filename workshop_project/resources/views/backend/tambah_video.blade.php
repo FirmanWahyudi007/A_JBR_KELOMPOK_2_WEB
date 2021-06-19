@@ -6,16 +6,19 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form>
+    <form method="POST" action="{{ route('video.store') }}" enctype="multipart/form-data">
+        {!! csrf_field() !!}
+        {!! isset($video) ? method_field('PUT'):'' !!}
         <div class="card-body">
             <div class="form-group">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul" placeholder="Masukkan Judul Video">
+                <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan Judul Video">
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
                 <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" />
+                    <input type="text" class="form-control datetimepicker-input" name="tanggal"
+                        data-target="#reservationdate" />
                     <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
@@ -23,19 +26,11 @@
             </div>
             <div class="form-group">
                 <label for="penerima">Deskripsi</label>
-                <textarea class="form-control"></textarea>
+                <textarea class="form-control" name="deskripsi"></textarea>
             </div>
             <div class="form-group">
                 <label for="exampleInputFile">File input</label>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                    </div>
-                    <div class="input-group-append">
-                        <span class="input-group-text">Upload</span>
-                    </div>
-                </div>
+                <input type="file" id="video" name="video">
             </div>
         </div>
         <!-- /.card-body -->
@@ -47,6 +42,7 @@
 </div>
 @endsection
 @push('css')
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />s
 <!-- daterange picker -->
 <link rel="stylesheet" href="{{asset('backend/plugins/daterangepicker/daterangepicker.css')}}">
 <!-- iCheck for checkboxes and radio inputs -->
@@ -67,6 +63,7 @@
 <link rel="stylesheet" href="{{asset('backend/plugins/dropzone/min/dropzone.min.css')}}">
 @endpush
 @push('js')
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 <!-- bs-custom-file-input -->
 <script src="{{asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- Select2 -->
@@ -87,8 +84,19 @@
 <!-- dropzonejs -->
 <script src="{{asset('backend/plugins/dropzone/min/dropzone.min.js')}}"></script>
 <script>
-    $(function () {
-        bsCustomFileInput.init();
+    const inputElement = document.querySelector('input[id="video"]');
+    // Create a FilePond instance
+    const pond = FilePond.create(inputElement);
+    //setup upload file
+    FilePond.setOptions({
+        server: {
+            url: '/video/upload',
+            process: '/add',
+            revert: '/delete',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        }
     });
 </script>
 <script>

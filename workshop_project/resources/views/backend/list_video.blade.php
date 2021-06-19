@@ -6,6 +6,11 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
+        @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+        @endif
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -16,6 +21,28 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($video as $item)
+                <tr>
+                    <th>{{ $no++ }}</th>
+                    <th>{{ $item->judul }}</th>
+                    <th><video src="{{ url('storage/Video/'.$item->video) }}"></video></th>
+                    <th>
+                        <div>
+                            <form action="{{ route('video.destroy',$item->id) }}" method="POST">
+                                <a href="{{ route('video.show',$item->id) }}" class="btn btn-primary">
+                                    <i class="fa fa-eye"></i></a>
+                                <a href="{{ route('video.edit',$item->id) }}" class="btn btn-warning">
+                                    <i class="fa fa-edit"></i></a>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Pakah Anda Yakin Ingin Menghapus Data Ini?')">
+                                    <i class="fa fa-trash"></i></button>
+                            </form>
+                        </div>
+                    </th>
+                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

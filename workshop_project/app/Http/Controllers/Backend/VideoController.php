@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Video;
+use Carbon\Carbon;
+use App\Models\Video;
+use Storage;
 
 class VideoController extends Controller
 {
@@ -15,7 +17,13 @@ class VideoController extends Controller
      */
     public function index()
     {
-        return view('backend.list_video');
+        $video = Video::all();
+        $no = 1;
+        //dd($video);
+        // $videos = $video->video;
+        // $coba = Storage::url('Video/'.$videos);
+        //dd($coba);
+        return view('backend.list_video', compact('video','no'));
     }
 
     /**
@@ -36,7 +44,17 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $tanggal = Carbon::parse($request->tanggal);
+        $file = $request->video;
+        $judul = $request->judul;
+        $namafile = $judul.'-'.$file;
+        $videos = new Video;
+        $videos->judul = $request->judul;
+        $videos->tanggal = $tanggal;
+        $videos->deskripsi = $request->deskripsi;
+        Storage::move('public/Video/temps/'.$file, 'public/Video/'.$namafile);
+        $videos->video = $namafile;
+        $videos->save();
     }
 
     /**
@@ -81,6 +99,9 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $video = Video::find($id);
+        File::delete('videos/'.$video->video);
+        Video::where('id', $id)->delete();
+        return redirect()->route('video.index')->with('success', 'Video Berhasil di Hapus!');
     }
 }

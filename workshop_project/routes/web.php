@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\ArtikelController;
 use App\Http\Controllers\Frontend\ArtikelController as AppArtikelController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +42,8 @@ Route::group(['namespace' => 'Frontend'] ,function(){
 Auth::routes();
 
 Route::get('/user', [App\Http\Controllers\HomeController::class, 'index'])->name('user');
+Route::prefix('/video/upload')->group(function () {
+    
+  Route::post('/add', [UploadVideoController::class, 'store']);
+  Route::delete('/delete', [UploadVideoController::class, 'destroy']);
+});
