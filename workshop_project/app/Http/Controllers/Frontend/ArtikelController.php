@@ -13,12 +13,19 @@ class ArtikelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = [
-            'artikel' => Artikel::all(),
-        ];
-        return view('frontend.artikel', compact('data'));
+        if (isset($_GET['query'])) {
+            $search_text = $_GET['query'];
+            $artikel = DB::table('artikel')->where('judul_artikel', 'LIKE','%'.$search_text.'%')->paginate(2);
+            $artikel->appends($request->all());
+            return view('frontend.artikel', ['artikel'=>$artikel]);
+            
+        }else {
+                $artikel = DB::table('artikel')->paginate(2);
+            return view('frontend.artikel', ['artikel'=>$artikel]);
+        }
+        
     }
 
     /**
@@ -86,5 +93,10 @@ class ArtikelController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function search(Request $request)
+    {
+        
     }
 }

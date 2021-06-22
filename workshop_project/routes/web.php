@@ -37,6 +37,7 @@ Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/','UserController@index')->name('home');
   Route::get('/artikell', 'ArtikelController@index')->name('artikell.index');
   Route::get('/artikell/{url_artikel}', 'ArtikelController@show')->name('artikell.show');
+  // Route::get('/artikell/search', 'ArtikelController@search')->name('artikell.search');
 });
 
 Auth::routes();
