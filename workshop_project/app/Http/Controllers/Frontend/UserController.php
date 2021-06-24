@@ -14,7 +14,7 @@ class UserController extends Controller
     {
         # code...
         $donasi = Donasi::all();
-        $artikel = Artikel::all();
+        $artikel = Artikel::paginate(3);
         $yayasan = Yayasan::all();
         return view('frontend.home', compact('artikel','donasi','yayasan'));
     }

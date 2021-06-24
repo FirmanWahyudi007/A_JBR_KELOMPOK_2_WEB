@@ -48,7 +48,7 @@
                         <p
                             style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">
                             {{ $item->isi_artikel }}</p>
-                        <a href="#" class="">Read More</a>
+                        <a href="{{route('artikell.show', $item->url_artikel)}}" class="read_more">Read More</a>
                     </div>
                 </div>
             </div>
