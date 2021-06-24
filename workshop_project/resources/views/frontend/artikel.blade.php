@@ -19,18 +19,18 @@
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
-                    @foreach ($data['artikel'] as $artikel)
+                    @foreach ($artikel as $artikell)
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="{{ asset('images/'.$artikel->sampul)}}" alt="">
-                                    <h3 class="blog_item_date">{{$artikel->tanggal}}</h3>
+                                <img class="card-img rounded-0" src="{{ asset('images/'.$artikell->sampul)}}" alt="">
+                                    <h3 class="blog_item_date">{{$artikell->tanggal}}</h3>
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block" href="{{route('artikell.show', $artikel->url_artikel)}}">
-                                    <h2>{{$artikel->judul_artikel}}</h2>
+                                <a class="d-inline-block" href="{{route('artikell.show', $artikell->url_artikel)}}">
+                                    <h2>{{$artikell->judul_artikel}}</h2>
                                 </a>
-                                <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">{{$artikel->isi_artikel}}</p>
+                                <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">{{$artikell->isi_artikel}}</p>
                                 <ul class="blog-info-link">
                                     <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
                                     <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
@@ -39,34 +39,17 @@
                         </article>
                     @endforeach
                         <nav class="blog-pagination justify-content-center d-flex">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Previous">
-                                        <i class="ti-angle-left"></i>
-                                    </a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">1</a>
-                                </li>
-                                <li class="page-item active">
-                                    <a href="#" class="page-link">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link" aria-label="Next">
-                                        <i class="ti-angle-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                        {{ $artikel->links() }}
                         </nav>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="blog_right_sidebar">
                         <aside class="single_sidebar_widget search_widget">
-                            <form action="#">
+                            <form action="{{route('artikell.index')}}" method="GET">
                                 <div class="form-group">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder='Search Keyword'
+                                        <input type="text" name="query" class="form-control" placeholder='Search Keyword'
                                             onfocus="this.placeholder = ''"
                                             onblur="this.placeholder = 'Search Keyword'">
                                         <div class="input-group-append">

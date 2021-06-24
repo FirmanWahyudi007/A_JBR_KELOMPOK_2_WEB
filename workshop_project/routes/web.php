@@ -41,6 +41,8 @@ Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/artikel/{url_artikel}', 'ArtikelController@show')->name('artikell.show');
   Route::get('/yayasan','YayasanUserController@index')->name('yayasanuser.index');
   Route::get('/yayasan/{id}','YayasanUserController@show')->name('yayasanuser.show');
+  Route::get('/artikell', 'ArtikelController@index')->name('artikell.index');
+  Route::get('/artikell/{url_artikel}', 'ArtikelController@show')->name('artikell.show');
 });
 
 Auth::routes();
