@@ -10,6 +10,10 @@
         <div class="alert alert-success">
             <p>{{ $message }}</p>
         </div>
+        @elseif ($message = Session::get('error'))
+        <div class="alert alert-danger">
+            <p>{{ $message }}</p>
+        </div>
         @endif
         <table id="example1" class="table table-bordered table-striped">
             <thead>
@@ -25,7 +29,7 @@
                 <tr>
                     <th>{{ $no++ }}</th>
                     <th>{{ $item->judul }}</th>
-                    <th><video src="{{ url('storage/Video/'.$item->video) }}"></video></th>
+                    <th>{{ $item->tanggal }}</th>
                     <th>
                         <div>
                             <form action="{{ route('video.destroy',$item->id) }}" method="POST">

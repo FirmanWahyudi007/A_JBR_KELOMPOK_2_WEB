@@ -6,13 +6,14 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="POST" action="{{ route('video.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ isset($video)? route('video.update',$video->id) :route('video.store') }}" enctype="multipart/form-data">
         {!! csrf_field() !!}
         {!! isset($video) ? method_field('PUT'):'' !!}
+        <input type="hidden" name="id" value="{{ isset($video) ? $video->id : '' }}"> <br>
         <div class="card-body">
             <div class="form-group">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan Judul Video">
+                <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan Judul Video" value="{{ isset($video) ? $video->judul : '' }}">
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
@@ -26,12 +27,15 @@
             </div>
             <div class="form-group">
                 <label for="penerima">Deskripsi</label>
-                <textarea class="form-control" name="deskripsi"></textarea>
+                <textarea class="form-control" name="deskripsi">{{ isset($video) ? $video->deskripsi : '' }}</textarea>
             </div>
+            @if(isset($video))
+
+            @else
             <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="video" name="video">
+                <input type="file" name="video" id="video">
             </div>
+            @endif
         </div>
         <!-- /.card-body -->
 
@@ -42,7 +46,7 @@
 </div>
 @endsection
 @push('css')
-<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />s
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 <!-- daterange picker -->
 <link rel="stylesheet" href="{{asset('backend/plugins/daterangepicker/daterangepicker.css')}}">
 <!-- iCheck for checkboxes and radio inputs -->

@@ -38,7 +38,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="{{url('admin')}}" class="nav-link">
+                    <a href="{{ route('index') }}" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -46,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('admin/data_donatur')}}" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Data Donatur
@@ -63,13 +63,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{url('donasi')}}" class="nav-link">
+                            <a href="{{route('donasi.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Donasi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{url('donasi/create')}}" class="nav-link">
+                            <a href="{{route('donasi.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah Donasi</p>
                             </a>
@@ -86,13 +86,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{url('yayasan')}}" class="nav-link">
+                            <a href="{{route('yayasan.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Yayasan</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{url('yayasan/create')}}" class="nav-link">
+                            <a href="{{route('yayasan.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah Yayasan</p>
                             </a>

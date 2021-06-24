@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Backend\ArtikelController;
 use App\Http\Controllers\Frontend\ArtikelController as AppArtikelController;
-use App\Http\Controllers\UploadController;
+use App\Http\Controllers\UploadVideoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,19 +24,23 @@ Route::get('/coba', function () {
 });
 
 Route::group(['namespace' => 'Backend', 'middleware' => 'auth'] ,function(){
-  Route::resource('admin', DashboardController::class);
-  Route::resource('video', VideoController::class);
-  Route::resource('yayasan', YayasanController::class);
-  Route::resource('donasi', DonasiController::class);
-  Route::resource('artikel', 'ArtikelController');
-  Route::post('artikel/{id}/edit', 'ArtikelController@update')->name('artikel.updates');
-  Route::put('donasi/nonactive/{donasi}','DonasiController@nonactive')->name('donasi.nonactive');
-  Route::put('donasi/active/{donasi}','DonasiController@active')->name('donasi.active');
+  Route::prefix('admin')->group(function () {
+    Route::resource('/', DashboardController::class);
+    Route::resource('video', VideoController::class);
+    Route::resource('yayasan', YayasanController::class);
+    Route::resource('donasi', DonasiController::class);
+    Route::resource('artikel', 'ArtikelController');
+    Route::post('artikel/{id}/edit', 'ArtikelController@update')->name('artikel.updates');
+    Route::put('donasi/nonactive/{donasi}','DonasiController@nonactive')->name('donasi.nonactive');
+    Route::put('donasi/active/{donasi}','DonasiController@active')->name('donasi.active');
+  });
 });
 Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/','UserController@index')->name('home');
-  Route::get('/artikell', 'ArtikelController@index')->name('artikell.index');
-  Route::get('/artikell/{url_artikel}', 'ArtikelController@show')->name('artikell.show');
+  Route::get('/artikel', 'ArtikelController@index')->name('artikell.index');
+  Route::get('/artikel/{url_artikel}', 'ArtikelController@show')->name('artikell.show');
+  Route::get('/yayasan','YayasanUserController@index')->name('yayasanuser.index');
+  Route::get('/yayasan/{id}','YayasanUserController@show')->name('yayasanuser.show');
 });
 
 Auth::routes();

@@ -55,6 +55,7 @@ class VideoController extends Controller
         Storage::move('public/Video/temps/'.$file, 'public/Video/'.$namafile);
         $videos->video = $namafile;
         $videos->save();
+        return redirect()->route('video.index')->with('success','Video Telah Disimpan');
     }
 
     /**
@@ -65,7 +66,8 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        //
+        $video = Video::find($id);
+        return view('backend.show_video', compact('video'));
     }
 
     /**
@@ -76,7 +78,8 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = Video::find($id);
+        return view('backend.tambah_video', compact('video'));
     }
 
     /**
@@ -88,7 +91,14 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tanggal = Carbon::parse($request->tanggal);
+        $video = Video::find($request->id);
+        $video->judul = $request->judul;
+        $video->tanggal = $tanggal;
+        $video->deskripsi = $request->deskripsi;
+        $video->save();
+        return redirect()->route('video.index')->with('succes', 'Video Berhasil di perbaharui!');
+
     }
 
     /**
@@ -99,9 +109,7 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        $video = Video::find($id);
-        File::delete('videos/'.$video->video);
         Video::where('id', $id)->delete();
-        return redirect()->route('video.index')->with('success', 'Video Berhasil di Hapus!');
+        return redirect()->route('video.index')->with('error', 'Video Berhasil di Hapus!');
     }
 }

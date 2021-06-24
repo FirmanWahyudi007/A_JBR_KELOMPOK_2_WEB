@@ -67,7 +67,7 @@
                         <div class="col-xl-3 col-lg-3">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="{{ asset('img/logo.png')}}" alt="">
+                                    <img src="{{ asset('frontend/img/logo.png')}}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -75,9 +75,9 @@
                             <div class="main-menu">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">home</a></li>
-                                        <li><a href="About.html">About</a></li>
+                                        <li><a href="{{ route('home') }}">Home</a></li>
                                         <li><a href="{{route('artikell.index')}}">Artikel</a>
+                                        <li><a href="{{ route('yayasanuser.index') }}">Yayasan</a></li>
                                         </li>
                                         <li><a href="#">pages <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
