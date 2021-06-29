@@ -78,6 +78,7 @@
                                         <li><a href="{{ route('home') }}">Home</a></li>
                                         <li><a href="{{route('artikell.index')}}">Artikel</a>
                                         <li><a href="{{ route('yayasanuser.index') }}">Yayasan</a></li>
+                                        <li><a href="{{route('videos.index')}}">videos</a>
                                         </li>
                                         <li><a href="#">pages <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">

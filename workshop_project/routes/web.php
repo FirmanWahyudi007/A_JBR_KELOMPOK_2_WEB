@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\ArtikelController;
 use App\Http\Controllers\Frontend\ArtikelController as AppArtikelController;
+use App\Http\Controllers\Frontend\VideosController;
 use App\Http\Controllers\UploadVideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,8 @@ Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/artikel/{url_artikel}', 'ArtikelController@show')->name('artikell.show');
   Route::get('/yayasan','YayasanUserController@index')->name('yayasanuser.index');
   Route::get('/yayasan/{id}','YayasanUserController@show')->name('yayasanuser.show');
+  Route::get('/video', 'VideosController@index')->name('videos.index');
+  Route::get('/video/{id}', 'VideosController@show')->name('videos.show');
 });
 
 Auth::routes();
