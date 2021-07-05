@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Charifit</title>
+    <title>Si - Penyaut</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -67,7 +67,7 @@
                         <div class="col-xl-3 col-lg-3">
                             <div class="logo">
                                 <a href="index.html">
-                                    <img src="{{ asset('frontend/img/logo.png')}}" alt="">
+                                    <h2>Si - Penyaut</h2>
                                 </a>
                             </div>
                         </div>
@@ -78,15 +78,9 @@
                                         <li><a href="{{ route('home') }}">Home</a></li>
                                         <li><a href="{{route('artikell.index')}}">Artikel</a>
                                         <li><a href="{{ route('yayasanuser.index') }}">Yayasan</a></li>
-                                        <li><a href="{{route('videos.index')}}">videos</a>
-                                        </li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="elements.html">elements</a></li>
-                                                <li><a href="Cause.html">Cause</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="{{route('videos.index')}}">video</a>
+                                        <li><a href="{{route('donasiuser.index')}}">Donasi</a></li>
+                                        <li><a href="{{route('videos.index')}}">Acara</a></li>
                                     </ul>
                                 </nav>
                                 <div class="Appointment">

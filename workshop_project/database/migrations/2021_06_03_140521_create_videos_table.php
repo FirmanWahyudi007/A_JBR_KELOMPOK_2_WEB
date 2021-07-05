@@ -19,6 +19,7 @@ class CreateVideosTable extends Migration
             $table->date('tanggal');
             $table->longText('deskripsi');
             $table->string('video',255);
+            $table->integer('user')->unsigned()->default(1);
             $table->timestamps();
         });
     }

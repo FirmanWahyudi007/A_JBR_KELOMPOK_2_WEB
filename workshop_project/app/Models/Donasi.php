@@ -10,5 +10,5 @@ class Donasi extends Model
     use HasFactory;
     protected $table = 'donasi';
     protected $PrimaryKey = 'id';
-    protected $fillable = ['nama_donasi', 'banner', 'tanggal', 'dokumentasi','keterangan','is_active','yayasan'];
+    protected $fillable = ['nama_donasi', 'banner', 'tanggal','keterangan','is_active','yayasan','penerima','user'];
 }

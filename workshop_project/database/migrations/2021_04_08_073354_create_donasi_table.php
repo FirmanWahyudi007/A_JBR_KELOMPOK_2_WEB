@@ -18,10 +18,11 @@ class CreateDonasiTable extends Migration
             $table->string('nama_donasi',45);
             $table->string('banner',255);
             $table->date('tanggal');
-            $table->string('dokumentasi',255);
             $table->text('keterangan');
             $table->boolean('is_active');
-            $table->integer('yayasan')->unsigned()->default(1);
+            $table->integer('yayasan')->unsigned()->nullable();
+            $table->string('penerima')->nullable();
+            $table->integer('user')->unsigned()->default(1);
             $table->timestamps();
         });
     }

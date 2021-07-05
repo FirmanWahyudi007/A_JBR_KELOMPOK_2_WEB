@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Video;
 use Storage;
+use Auth;
 
 class VideoController extends Controller
 {
@@ -44,6 +45,7 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
+        $id = Auth::user()->id;
         $tanggal = Carbon::parse($request->tanggal);
         $file = $request->video;
         $judul = $request->judul;
@@ -54,6 +56,7 @@ class VideoController extends Controller
         $videos->deskripsi = $request->deskripsi;
         Storage::move('public/Video/temps/'.$file, 'public/Video/'.$namafile);
         $videos->video = $namafile;
+        $videos->user = $id;
         $videos->save();
         return redirect()->route('video.index')->with('success','Video Telah Disimpan');
     }

@@ -1,4 +1,7 @@
 @extends('backend/layouts.template')
+@section('titlepage')
+    Donasi
+@endsection
 @section('content')
 <div class="card">
     <div class="card-header">

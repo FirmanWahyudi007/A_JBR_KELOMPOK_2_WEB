@@ -1,4 +1,7 @@
 @extends('backend/layouts.template')
+@section('titlepage')
+    Donasi
+@endsection
 @section('content')
 <div class="card card-primary">
     <div class="card-header">
@@ -61,6 +64,20 @@
                 @enderror
             </div>
             <div class="form-group">
+                <label for="penerima">Yayasan</label>
+                <select name="yayasan" id="yayasan" class="form-control">
+                    <option value="">Pilih Yayasan</option>
+                    @foreach ($yayasan as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama_yayasan }}</option>
+                    @endforeach
+                </select>
+                @error('penerima')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="form-group">
                 <label for="keterangan">Keterangan</label>
                 <textarea cols="10" rows="10" class="form-control @error('keterangan') is-invalid @enderror"
                     name="keterangan" id="keterangan" placeholder="Masukkan Keterangan"
@@ -89,22 +106,6 @@
                     @enderror
                 </div>
                 <img id="previewImg" src="{{ isset($donasi) ? asset('images/'.$donasi->banner) : asset('images/default.png') }}" alt="profile image" style="max-width: 130px; margin-top:20px;">
-            </div>
-            <div class="form-group">
-                <label for="dokumentasi">File input Dokumentasi</label>
-                <div class="input-group">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input @error('dokumentasi') is-invalid @enderror"
-                            name="dokumentasi" id="dokumentasi" onchange="previewFile2(this)">
-                        <label class="custom-file-label" for="dokumentasi">Choose file</label>
-                    </div>
-                    @error('dokumentasi')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
-                <img id="preview" src="{{ isset($donasi) ? asset('images/'.$donasi->dokumentasi) : asset('images/default.png') }}" alt="profile image" style="max-width: 130px; margin-top:20px;">
             </div>
         </div>
         <!-- /.card-body -->

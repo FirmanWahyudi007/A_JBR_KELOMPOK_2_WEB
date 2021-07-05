@@ -12,6 +12,8 @@
   @stack('css')
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('backend/dist/css/adminlte.min.css')}}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="{{asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->

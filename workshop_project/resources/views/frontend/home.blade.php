@@ -110,7 +110,7 @@
                         <div class="causes_content">
                             <h4>{{ $all->nama_donasi }}</h4>
                             <p>{{ $all->keterangan }}</p>
-                            <a class="read_more" href="cause_details.html">Read More</a>
+                            <a class="read_more" href="{{route('donasi.show', $all->id)}}">Donate</a>
                         </div>
                     </div>
                     @endforeach

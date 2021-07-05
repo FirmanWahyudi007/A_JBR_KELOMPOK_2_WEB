@@ -31,10 +31,6 @@
                                     <h2>{{$artikell->judul_artikel}}</h2>
                                 </a>
                                 <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">{{$artikell->isi_artikel}}</p>
-                                <ul class="blog-info-link">
-                                    <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-                                </ul>
                             </div>
                         </article>
                     @endforeach

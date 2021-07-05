@@ -14,5 +14,6 @@ class Video extends Model
         'tanggal',
         'deskripsi',
         'video',
+        'user',
     ];
 }

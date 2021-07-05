@@ -1,4 +1,7 @@
 @extends('backend/layouts.template')
+@section('titlepage')
+    Video
+@endsection
 @section('content')
 <div class="card">
     <div class="card-header">

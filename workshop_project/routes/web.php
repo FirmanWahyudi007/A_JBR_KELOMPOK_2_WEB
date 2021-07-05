@@ -44,6 +44,9 @@ Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/yayasan/{id}','YayasanUserController@show')->name('yayasanuser.show');
   Route::get('/video', 'VideosController@index')->name('videos.index');
   Route::get('/video/{id}', 'VideosController@show')->name('videos.show');
+  Route::get('/donasi', 'DonasiUserController@index')->name('donasiuser.index');
+  Route::get('/donasi/{id}', 'DonasiUserController@show')->name('donasiuser.show');
+
 });
 
 Auth::routes();

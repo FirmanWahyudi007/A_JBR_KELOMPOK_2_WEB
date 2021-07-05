@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\Yayasan;
+use App\Models\Donasi;
 use File;
+use Auth;
 
 class DonasiController extends Controller
 {
@@ -18,38 +21,38 @@ class DonasiController extends Controller
     public function create()
     {
         $donasi=null;
-        return view('backend.tambah_donasi', compact('donasi'));
+        $yayasan = Yayasan::all();
+        return view('backend.tambah_donasi', compact('donasi','yayasan'));
     }
     public function store(Request $request)
     {
+        $id = Auth::user()->id;
         $this->validate($request, [
             'donasi' => 'required',
             'tanggal' => 'required',
-            'penerima' => 'required',
             'keterangan'=>'required|min:10',
-            'dokumentasi' => 'required|mimes:png,jpg,jpeg',
             'banner' => 'required|mimes:png,jpg,jpeg'
          ]);
         $tanggal = now();
         $date = Carbon::parse($request->tanggal);
-        if($request->hasfile('dokumentasi') && $request->hasfile('banner')){
-            $dokumentasi = $request->file('dokumentasi');
+        if($request->hasfile('banner')){
             $banner = $request->file('banner');
-            $namadokumen = $request->donasi.' '.$dokumentasi->getClientOriginalName();
             $namabanner = $request->donasi.' '.$banner->getClientOriginalName();
-            $pathdoukumen = $dokumentasi->move('images',$namadokumen);
             $pathbanner = $banner->move('images',$namabanner);
-            DB::table('donasi')->insert([
-                'nama_donasi'=>$request->donasi,
-                'tanggal'=>$date,
-                'yayasan'=>$request->penerima,
-                'keterangan'=>$request->keterangan,
-                'banner' => $namabanner,
-                'is_active' => 1,
-                'dokumentasi'=>$namadokumen,
-                'created_at' => $tanggal,
-                'updated_at' => $tanggal,
-            ]);
+            $donasi = new Donasi;
+            $donasi->nama_donasi = $request->donasi;
+            $donasi->tanggal = $date;
+            if($request->penerima){
+                $donasi->penerima = $request->penerima;
+            }
+            if($request->yayasan){
+                $donasi->yayasan = $request->yayasan;
+            }
+            $donasi->keterangan = $request->keterangan;
+            $donasi->banner = $namabanner;
+            $donasi->is_active = 1;
+            $donasi->user = $id;
+            $donasi->save();
         }
         return redirect()->route('donasi.index')->with('success','Data Donasi Telah Tersimpan');
     }
