@@ -22,7 +22,7 @@
             </div>
             <div class="form-group">
                 <label>isi</label>
-                <textarea name="isi_artikel" class="form-control form-control-user ckeditor" id="ckeditor" cols="30" rows="10" placeholder="Isi Artikel">{{$artikel->isi_artikel}}</textarea>
+                <textarea name="isi_artikel" class="form-control" id="konten" cols="30" rows="10" placeholder="Isi Artikel">{{$artikel->isi_artikel}}</textarea>
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
@@ -72,6 +72,14 @@
 <link rel="stylesheet" href="{{asset('backend/plugins/dropzone/min/dropzone.min.css')}}">
 @endpush
 @push('js')
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script>
+   var konten = document.getElementById("konten");
+     CKEDITOR.replace(konten,{
+     language:'en-gb'
+   });
+   CKEDITOR.config.allowedContent = true;
+</script>
 <!-- bs-custom-file-input -->
 <script src="{{asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- Select2 -->

@@ -14,15 +14,15 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="url">Url Artikel</label>
-                <input type="text" class="form-control" id="url_artikel" name="url_artikel" placeholder="Masukkan Judul Video">
+                <input type="text" class="form-control" id="url_artikel" name="url_artikel" placeholder="Masukkan URL Artikel">
             </div>
             <div class="form-group">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul_artikel" name="judul_artikel" placeholder="Masukkan Judul Video">
+                <input type="text" class="form-control" id="judul_artikel" name="judul_artikel" placeholder="Masukkan Judul Artikel">
             </div>
             <div class="form-group">
                 <label>isi</label>
-                <textarea name="isi_artikel" class="form-control form-control-user ckeditor" id="ckeditor" cols="30" rows="10" placeholder="Isi Artikel"></textarea>
+                <textarea name="isi_artikel" class="form-control" id="konten" cols="30" rows="10" placeholder="Isi Artikel"></textarea>
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
@@ -72,6 +72,14 @@
 <link rel="stylesheet" href="{{asset('backend/plugins/dropzone/min/dropzone.min.css')}}">
 @endpush
 @push('js')
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script>
+   var konten = document.getElementById("konten");
+     CKEDITOR.replace(konten,{
+     language:'en-gb'
+   });
+   CKEDITOR.config.allowedContent = true;
+</script>
 <!-- bs-custom-file-input -->
 <script src="{{asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- Select2 -->

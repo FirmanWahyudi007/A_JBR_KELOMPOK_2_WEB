@@ -31,7 +31,7 @@
                         <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
                      </ul>
                      <p class="excert">
-                     {{$artikel->isi_artikel}}
+                     {!! html_entity_decode($artikel->isi_artikel) !!}
                      </p>
                   </div>
                </div>

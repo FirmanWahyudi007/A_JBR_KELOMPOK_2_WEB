@@ -18,7 +18,7 @@ class CreateArtikelTable extends Migration
             $table->string('url_artikel');
             $table->string('sampul');
             $table->string('judul_artikel');
-            $table->string('isi_artikel');
+            $table->text('isi_artikel');
             $table->date('tanggal');
             $table->integer('user')->unsigned()->default(1);
             $table->timestamps();

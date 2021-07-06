@@ -45,9 +45,8 @@
                     </div>
                     <div class="help_content">
                         <h4>{{ $item->judul_artikel }}</h4>
-                        <p
-                            style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">
-                            {{ $item->isi_artikel }}</p>
+                        <div class="max tittle" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;">
+                             {!! html_entity_decode($item->isi_artikel) !!}</div>
                         <a href="{{route('artikell.show', $item->url_artikel)}}" class="read_more">Read More</a>
                     </div>
                 </div>

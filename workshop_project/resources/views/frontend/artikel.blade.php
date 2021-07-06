@@ -30,7 +30,7 @@
                                 <a class="d-inline-block" href="{{route('artikell.show', $artikell->url_artikel)}}">
                                     <h2>{{$artikell->judul_artikel}}</h2>
                                 </a>
-                                <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">{{$artikell->isi_artikel}}</p>
+                                <div class="max tittle" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;">{!! html_entity_decode($artikell->isi_artikel) !!}</div>
                             </div>
                         </article>
                     @endforeach
