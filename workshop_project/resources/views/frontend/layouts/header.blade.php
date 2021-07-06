@@ -83,11 +83,11 @@
                                         <li><a href="{{route('videos.index')}}">Acara</a></li>
                                     </ul>
                                 </nav>
-                                <div class="Appointment">
-                                    <div class="book_btn d-none d-lg-block">
-                                        <a data-scroll-nav='1' href="#">Make a Donate</a>
-                                    </div>
-                                </div>
+                                @if (Auth::user())
+                                
+                                @else
+                                
+                                @endif
                             </div>
                         </div>
                         <div class="col-12">
