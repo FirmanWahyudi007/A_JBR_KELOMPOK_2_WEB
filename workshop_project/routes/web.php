@@ -46,7 +46,7 @@ Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/video/{id}', 'VideosController@show')->name('videos.show');
   Route::get('/donasi', 'DonasiUserController@index')->name('donasiuser.index');
   Route::get('/donasi/{id}', 'DonasiUserController@show')->name('donasiuser.show');
-
+  Route::post('/donasi', 'DonasiUserController@donate')->name('donate');
 });
 
 Auth::routes();

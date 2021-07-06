@@ -20,4 +20,19 @@ class DonasiUserController extends Controller
         $donasi = Donasi::find($id);
         return view('frontend.donate',compact('donasi'));
     }
+
+    public function donate(Request $request)
+    {
+        # code...
+        $date = Carbon::now()->toDateTimeString();
+        $donate = new DetailDonasi;
+        $donate->donasi = $request->donasi;
+        $donate->keterangan = $request->keterangan;
+        $donate->tanggal = $date;
+        $donate->nominal = $request->nominal; 
+        $donate->konfirmasi = 0;
+        $donate->donatur = 1;
+        $donate->save();
+        return Redirect::back();
+    }
 }

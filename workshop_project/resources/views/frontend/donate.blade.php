@@ -32,10 +32,24 @@
                             <h2>{{ $donasi->nama_donasi }}</h2>
                         </a>
                         <h4>{{ $donasi->penerima }}</h4>
-                        <form action="#" method="post">
+                        <form action="{{ route('donate') }}" method="post">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="donasi" value="1">
+                            <div class="form-group">
+                                <label for="nama">Nama</label>
+                                <input type="text" name="nama" id="nama" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" id="email" class="form-control">
+                            </div>
                             <div class="form-group">
                                 <label for="nominal">Nominal</label>
                                 <input type="text" name="nominal" id="nominal" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="keterangan">Keterangan</label>
+                                <textarea name="keterangan" id="keterangan" cols="30" rows="5" class="form-control"></textarea>
                             </div>
                             <button type="submit" class="btn btn-success">Donate</button>
                         </form>
