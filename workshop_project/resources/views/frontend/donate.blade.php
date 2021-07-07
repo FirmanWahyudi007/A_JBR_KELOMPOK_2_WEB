@@ -34,14 +34,14 @@
                         <h4>{{ $donasi->penerima }}</h4>
                         <form action="{{ route('donate') }}" method="post">
                             {!! csrf_field() !!}
-                            <input type="hidden" name="donasi" value="1">
+                            <input type="hidden" name="donasi" value="{{ $donasi->id }}">
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" name="nama" id="nama" class="form-control">
+                                <input type="text" id="nama" class="form-control" value="{{ Auth::user()->name }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" name="email" id="email" class="form-control">
+                                <input type="text" id="email" class="form-control" value="{{ Auth::user()->email }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="nominal">Nominal</label>

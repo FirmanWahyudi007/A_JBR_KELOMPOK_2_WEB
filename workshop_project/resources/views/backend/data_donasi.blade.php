@@ -38,17 +38,18 @@
                                 method="POST">
                                 <a href="{{ route('donasi.edit',$item->id) }}" class="btn btn-warning">
                                     <i class="fa fa-edit"></i></a>
-                                @csrf
-                                @method('PUT')
+                                    @csrf
+                                    @method('PUT')
                                 @if ($item->is_active == 1)
                                 <button type="submit" class="btn btn-danger"
                                     onclick="return confirm('Pakah Anda Yakin Ingin Menonaktifkan Data Ini?')">
                                     <i class="fa fa-exclamation"></i></button>
                                 @else
                                 <button type="submit" class="btn btn-primary"
-                                    onclick="return confirm('Pakah Anda Yakin Ingin Mengaktifkan Data Ini?')">
+                                    onclick="return confirm('Pakah Anda Yakin Ingin Mengaktifkan Data Ini?')" >
                                     <i class="fa fa-check"></i></button>
                                 @endif
+                                <a href="show" class="btn btn-info"><i class="fas fa-eye"></i></a>
                             </form>
                         </div>
                     </td>

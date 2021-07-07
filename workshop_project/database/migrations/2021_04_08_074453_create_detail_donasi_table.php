@@ -16,11 +16,12 @@ class CreateDetailDonasiTable extends Migration
         Schema::create('detail_donasi', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('donasi')->unsigned()->default(1);
+            $table->integer('users')->unsigned()->default(1);
             $table->string('keterangan',45);
             $table->date('tanggal');
             $table->integer('nominal');
             $table->boolean('konfirmasi');
-            $table->integer('donatur')->unsigned()->default(1);
+            $table->string('bukti_transfer')->nullable();
             $table->timestamps();
         });
     }
