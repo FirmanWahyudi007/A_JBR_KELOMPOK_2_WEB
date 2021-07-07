@@ -14,4 +14,11 @@ class ArtikelApiController extends Controller
         $artikel = Artikel::all();
         return response()->json($artikel, 201);
     }
+
+    public function show($id)
+    {
+        # code...
+        $artikel = Artikel::find($id)->first();
+        return response()->json($artikel, 201);
+    }
 }

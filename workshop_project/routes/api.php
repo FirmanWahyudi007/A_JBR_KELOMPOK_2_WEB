@@ -19,4 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::group(['namespace' => 'Api'] ,function(){
     Route::get('/artikel','ArtikelApiController@index')->name('artikelapi.index');
+    Route::get('/artikel/{id}','ArtikelApiController@show')->name('artikelapi.show');
 });
