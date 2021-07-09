@@ -28,7 +28,7 @@
                                             @if ($item->konfirmasi == 0)
                                                 <a href="{{ route('donasiuser.upload',$item->id) }}">Upload Bukti</a>
                                             @else
-                                                {{ $item->is_active == 1 ? 'Konfirmasi' : 'Belum' }}
+                                                {{ $item->konfirmasi == 1 ? 'Konfirmasi' : 'Belum' }}
                                             @endif
                                         </td>
                                     </tr>

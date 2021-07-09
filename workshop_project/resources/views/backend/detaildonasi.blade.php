@@ -5,7 +5,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Data Donasi</h3>
+        <h3 class="card-title">Detail Donasi</h3>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -17,41 +17,41 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Donasi</th>
-                    <th>Tanggal</th>
-                    <th>Status</th>
-                    <th>Keterangan</th>
-                    <th>Action</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Nominal</th>
+                    <th>Bukti</th>
+                    <th>Konfirmasi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($donasi as $item)
+                @foreach($detail as $item)
                 <tr>
-                    <td>{{ $item->nama_donasi }}</td>
-                    <td>{{ $item->tanggal }}</td>
-                    <td>{{ $item->is_active == 1 ? 'Aktif' : 'Tidak Aktif' }}</td>
-                    <td>{{ $item->keterangan }}</td>
+                    <td>{{ $no++ }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->nominal }}</td>
+                    <td><a href="{{ url('images/buktitransfer',$item->bukti_transfer) }}" target="_blank">Lihat</a></td>
                     <td>
-                        <div>
-                            <form
-                                action="{{ $item->is_active == 1 ? route('donasi.nonactive',$item->id) : route('donasi.active',$item->id)  }}"
-                                method="POST">
-                                <a href="{{ route('donasi.edit',$item->id) }}" class="btn btn-warning">
-                                    <i class="fa fa-edit"></i></a>
+                        @if ($item->konfirmasi == 2)
+                            <div class="row">
+                                <form action="{{ route('detail.approve',$item->id) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                @if ($item->is_active == 1)
-                                <button type="submit" class="btn btn-danger"
-                                    onclick="return confirm('Pakah Anda Yakin Ingin Menonaktifkan Data Ini?')">
-                                    <i class="fa fa-exclamation"></i></button>
-                                @else
-                                <button type="submit" class="btn btn-primary"
-                                    onclick="return confirm('Pakah Anda Yakin Ingin Mengaktifkan Data Ini?')" >
-                                    <i class="fa fa-check"></i></button>
-                                @endif
-                                <a href="{{ route('donasi.detail',$item->id) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                            </form>
-                        </div>
+                                    <button type="submit" class="btn btn-primary"
+                                        onclick="return confirm('Pakah Anda Yakin Ingin Konfirmasi Data Ini?')" >
+                                        <i class="fa fa-check"></i></button>
+                                </form>
+                                <form action="{{ route('detail.disapprove',$item->id) }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Pakah Anda Yakin Ingin Menolak Data Ini?')">
+                                        <i class="fa fa-exclamation"></i></button>
+                                </form>
+                            </div>
+                        @else
+                            {{ $item->konfirmasi == 1 ? 'Konfirmasi' : 'Bukti Salah' }}
+                        @endif
                     </td>
                 </tr>
                 @endforeach

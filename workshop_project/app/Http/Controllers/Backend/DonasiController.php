@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Yayasan;
 use App\Models\Donasi;
+use App\Models\DetailDonasi;
 use File;
 use Auth;
 
@@ -89,5 +90,34 @@ class DonasiController extends Controller
             'is_active'=>1,
         ]);
         return redirect()->route('donasi.index')->with('success','Data Donasi Telah Diaktifkan');
+    }
+
+    public function detailDonasi()
+    {
+        # code...
+        $no = 1;
+        $detail = DetailDonasi::join('users', 'detail_donasi.users', '=', 'users.id')->get(['detail_donasi.*', 'users.name']);
+        return view('backend.detaildonasi', compact('no','detail'));
+    }
+
+    public function approve(Request $request,$id)
+    {
+        # code...
+            $detail = DetailDonasi::find($id);
+            $detail->konfirmasi = 1;
+            $detail->save();
+        
+        
+        return redirect()->route('donasi.detail')->with('success','Donasi Dikonfirmasi');
+    }
+
+    public function disapprove($id)
+    {
+        # code...
+        $detail = DetailDonasi::find($id);
+        File::delete('images/buktitransfer/'.$detail->bukti_transfer);
+        $detail->konfirmasi = 0;
+        $detail->save();
+        return redirect()->route('donasi.detail')->with('error','Bukti salah');
     }
 }
