@@ -12,7 +12,7 @@ class ArtikelApiController extends Controller
     {
         # code...
         $artikel = Artikel::all();
-        return response()->json($artikel, 201);
+        return response()->json(['kode' => 201,'pesan' => 'success', 'data' => $artikel  ]);
     }
 
     public function show($id)
