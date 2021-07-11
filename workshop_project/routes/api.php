@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\LoginApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\HttpCache\Store;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +24,6 @@ Route::group(['namespace' => 'Api'] ,function(){
     Route::get('/artikel/{id}','ArtikelApiController@show')->name('artikelapi.show');
     Route::get('/yayasan','YayasanApiController@index')->name('yayasanapi.index');
     Route::get('/yayasan/{id}','YayasanApiController@show')->name('yayasanapi.show');
+    Route::post('/login', 'LoginApiController@store')->name('login.store');
+
 });
