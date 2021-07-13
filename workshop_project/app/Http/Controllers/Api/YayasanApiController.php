@@ -12,7 +12,7 @@ class YayasanApiController extends Controller
     {
         # code...
         $yayasan = Yayasan::all();
-        return response()->json(['kode' => 201,'pesan' => 'success', 'data' => $yayasan  ]);
+        return response()->json(['code' => 201,'message' => 'success', 'data' => $yayasan  ]);
     }
 
     public function show($id)
