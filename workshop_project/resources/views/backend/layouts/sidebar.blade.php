@@ -144,6 +144,30 @@
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-calendar"></i>
+                        <p>
+                            Acara
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('acara.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Data Acara</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('acara.create')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tambah Acara</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

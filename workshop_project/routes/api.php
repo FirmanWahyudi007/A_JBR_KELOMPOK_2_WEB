@@ -26,5 +26,5 @@ Route::group(['namespace' => 'Api'] ,function(){
     Route::get('/yayasan/{id}','YayasanApiController@show')->name('yayasanapi.show');
     Route::post('/login', 'LoginApiController@store')->name('login.store');
     Route::post('/register', 'RegisterApiController@store')->name('register.store');
-
+    Route::get('/donasi', 'DonasiApiController@index')->name('donasiapi.index');
 });

@@ -1,6 +1,6 @@
 @extends('backend/layouts.template')
 @section('titlepage')
-    Video
+Video
 @endsection
 @section('content')
 <div class="card card-primary">
@@ -9,24 +9,21 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="POST" action="{{ isset($video)? route('video.update',$video->id) :route('video.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ isset($video)? route('video.update',$video->id) :route('video.store') }}"
+        enctype="multipart/form-data">
         {!! csrf_field() !!}
         {!! isset($video) ? method_field('PUT'):'' !!}
         <input type="hidden" name="id" value="{{ isset($video) ? $video->id : '' }}"> <br>
         <div class="card-body">
             <div class="form-group">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan Judul Video" value="{{ isset($video) ? $video->judul : '' }}">
+                <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan Judul Video"
+                    value="{{ isset($video) ? $video->judul : '' }}">
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
-                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" name="tanggal"
-                        data-target="#reservationdate" />
-                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                </div>
+                <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal"
+                    id="tanggal" value="{{ isset($video) ? $video->tanggal : Request::old('tanggal') }}">
             </div>
             <div class="form-group">
                 <label for="penerima">Deskripsi</label>

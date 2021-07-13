@@ -1,6 +1,6 @@
 @extends('backend/layouts.template')
 @section('titlepage')
-    Donasi
+Donasi
 @endsection
 @section('content')
 <div class="card card-primary">
@@ -38,25 +38,19 @@
             </div>
             <div class="form-group">
                 <label>Date:</label>
-                <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input @error('tanggal') is-invalid @enderror"
-                        name="tanggal" data-target="#reservationdate"
-                        value="{{ isset($donasi) ? $donasi->tanggal : Request::old('tanggal') }}" />
-                    <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                    @error('tanggal')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
-                </div>
+                <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal"
+                    id="tanggal" value="{{ isset($donasi) ? $donasi->tanggal : Request::old('tanggal') }}">
+                @error('tanggal')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="penerima">Penerima</label>
                 <input type="text" class="form-control @error('penerima') is-invalid @enderror" name="penerima"
                     id="penerima" placeholder="Masukkan Nama Penerima"
-                    value="{{ isset($donasi) ? $donasi->yayasan : Request::old('penerima') }}">
+                    value="{{ isset($donasi) ? $donasi->penerima : Request::old('penerima') }}">
                 @error('penerima')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -68,7 +62,7 @@
                 <select name="yayasan" id="yayasan" class="form-control">
                     <option value="">Pilih Yayasan</option>
                     @foreach ($yayasan as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama_yayasan }}</option>
+                    <option value="{{ $item->id }}" {{ (isset($donasi) && $donasi->yayasan == $item->id) ? 'selected' : '' }}>{{$item->nama_yayasan}}</option>
                     @endforeach
                 </select>
                 @error('penerima')
@@ -105,7 +99,9 @@
                     </span>
                     @enderror
                 </div>
-                <img id="previewImg" src="{{ isset($donasi) ? asset('images/'.$donasi->banner) : asset('images/default.png') }}" alt="profile image" style="max-width: 130px; margin-top:20px;">
+                <img id="previewImg"
+                    src="{{ isset($donasi) ? asset('images/'.$donasi->banner) : asset('images/default.png') }}"
+                    alt="profile image" style="max-width: 130px; margin-top:20px;">
             </div>
         </div>
         <!-- /.card-body -->
@@ -307,11 +303,11 @@
     // DropzoneJS Demo Code End
 </script>
 <script>
-    function previewFile(input){
+    function previewFile(input) {
         var file = $("input[type=file]").get(0).files[0];
         if (file) {
             var reader = new FileReader();
-            reader.onload = function(){
+            reader.onload = function () {
                 $('#previewImg').attr("src", reader.result);
             }
             reader.readAsDataURL(file);
@@ -319,11 +315,11 @@
     }
 </script>
 <script>
-    function previewFile2(input){
+    function previewFile2(input) {
         var file = $("input[type=file]").get(0).files[0];
         if (file) {
             var reader = new FileReader();
-            reader.onload = function(){
+            reader.onload = function () {
                 $('#preview').attr("src", reader.result);
             }
             reader.readAsDataURL(file);

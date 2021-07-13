@@ -24,7 +24,7 @@ class DonasiUserController extends Controller
     {
         if (!Auth::user()) {
             # code...
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error','Silahkan Login terlebih Dahulu');
         }
         $donasi = Donasi::find($id);
         return view('frontend.donate',compact('donasi'));

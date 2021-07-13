@@ -63,8 +63,9 @@ class DonasiController extends Controller
     }
     public function edit($id)
     {
+        $yayasan = Yayasan::all();
         $donasi=DB::table('donasi')->where('id',$id)->first();
-        return view('backend.tambah_donasi',compact('donasi'));
+        return view('backend.tambah_donasi',compact('donasi','yayasan'));
     }
     public function update(Request $request, $id)
     {

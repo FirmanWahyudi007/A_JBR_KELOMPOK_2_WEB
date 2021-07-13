@@ -23,14 +23,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/coba', function () {
     return view('welcome');
 });
+Route::get('/error', function () {
+  return view('error');
+})->name('error.403');
 
-Route::group(['namespace' => 'Backend', 'middleware' => 'auth'] ,function(){
+Route::group(['namespace' => 'Backend', 'middleware' => ['auth', 'web','admin']] ,function(){
   Route::prefix('admin')->group(function () {
     Route::resource('/', DashboardController::class);
     Route::resource('video', VideoController::class);
     Route::resource('yayasan', YayasanController::class);
     Route::resource('donasi', DonasiController::class);
     Route::resource('artikel', 'ArtikelController');
+    Route::resource('acara', AcaraController::class);
     Route::post('artikel/{id}/edit', 'ArtikelController@update')->name('artikel.updates');
     Route::put('donasi/nonactive/{donasi}','DonasiController@nonactive')->name('donasi.nonactive');
     Route::put('donasi/active/{donasi}','DonasiController@active')->name('donasi.active');

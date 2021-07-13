@@ -21,6 +21,7 @@ class CreateAcaraTable extends Migration
             $table->date('tanggal_acara');
             $table->string('jam_acara',20);
             $table->integer('id_users')->unsigned()->default(1);
+            $table->string('link_acara');
             $table->timestamps();
         });
     }

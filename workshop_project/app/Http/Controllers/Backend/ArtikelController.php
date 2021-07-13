@@ -41,6 +41,13 @@ class ArtikelController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'url_artikel' => 'required',
+            'sampul' => 'required',
+            'judul_artikel' => 'required',
+            'isi_artikel' => 'required',
+            'tanggal' => 'required',
+        ]);
         $id = Auth::user()->id;
         $url_artikel = $request->url_artikel;
         $sampul = $request->sampul;
@@ -123,6 +130,6 @@ class ArtikelController extends Controller
         $gambar = Artikel::find($id);
         File::delete('images/'.$gambar->sampul);
         Artikel::where('id', $id)->delete();
-        return redirect()->route('artikel.index')->with('success', 'Data Artikel Berhasil di Hapus!');
+        return redirect()->route('artikel.index')->with('error', 'Data Artikel Berhasil di Hapus!');
     }
 }

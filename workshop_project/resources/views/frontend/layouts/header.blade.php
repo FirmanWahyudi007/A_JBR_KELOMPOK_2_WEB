@@ -78,13 +78,13 @@
                                         <li><a href="{{ route('home') }}">Home</a></li>
                                         <li><a href="{{route('artikell.index')}}">Artikel</a>
                                         <li><a href="{{ route('yayasanuser.index') }}">Yayasan</a></li>
-                                        <li><a href="{{route('videos.index')}}">video</a>
+                                        <li><a href="{{route('videos.index')}}">Video</a>
                                         <li><a href="{{route('donasiuser.index')}}">Donasi</a></li>
                                         <li><a href="{{route('videos.index')}}">Acara</a></li>
                                         @if (Auth::user())
                                         <li><a href="#" style="color: black" >{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html"></a></a></li>
+                                                <li><a href="{{route('donasiuser.list')}}">Donasi</a></li>
                                                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                                         {{ __('Logout') }}
@@ -94,13 +94,6 @@
                                                         @csrf
                                                     </form>
                                                 </li>
-                                            </ul>
-                                        </li>
-                                        @else
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="single-blog.html">single-blog</a></li>
                                             </ul>
                                         </li>
                                         @endif

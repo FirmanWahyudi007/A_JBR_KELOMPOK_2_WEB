@@ -21,6 +21,7 @@ class CreateDetailDonasiTable extends Migration
             $table->date('tanggal');
             $table->integer('nominal');
             $table->boolean('konfirmasi');
+            $table->string('metode_pembayaran'); 
             $table->string('bukti_transfer')->nullable();
             $table->timestamps();
         });

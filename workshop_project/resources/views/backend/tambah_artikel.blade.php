@@ -9,24 +9,54 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
+    @if ($errors->any())
+    <div class="alert alert-danger" style="margin-top: 10px">
+        <strong>Whoops!</strong> Ada Masalah dengan input anda.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="post" action="{{route('artikel.store')}}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <div class="form-group">
                 <label for="url">Url Artikel</label>
-                <input type="text" class="form-control" id="url_artikel" name="url_artikel" placeholder="Masukkan URL Artikel">
+                <input type="text" class="form-control @error('url_artikel') is-invalid @enderror" id="url_artikel" name="url_artikel" value="{{ Request::old('url_artikel') }}"  placeholder="Masukkan URL Artikel">
+                @error('url_artikel')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul_artikel" name="judul_artikel" placeholder="Masukkan Judul Artikel">
+                <input type="text" class="form-control  @error('judul_artikel') is-invalid @enderror" id="judul_artikel" name="judul_artikel" value="{{ Request::old('judul_artikel') }}" placeholder="Masukkan Judul Artikel">
+                @error('judul_artikel')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label>isi</label>
-                <textarea name="isi_artikel" class="form-control" id="konten" cols="30" rows="10" placeholder="Isi Artikel"></textarea>
+                <textarea name="isi_artikel" class="form-control  @error('isi_artikel') is-invalid @enderror" id="konten" cols="30" rows="10" placeholder="Isi Artikel">{{ Request::old('isi_artikel') }}</textarea>
+                @error('isi_artikel')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
-                    <input type="date" class="form-control form-control-user" id="tanggal" name="tanggal"/>
+                <input type="date" class="form-control form-control-user  @error('tanggal') is-invalid @enderror" id="tanggal" name="tanggal" value="{{ Request::old('tanggal') }}"/>
+                @error('tanggal')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             
             <div class="form-group">
