@@ -24,6 +24,7 @@ Route::get('/coba', function () {
     return view('welcome');
 });
 Route::get('/error', function () {
+  
   return view('error');
 })->name('error.403');
 

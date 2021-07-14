@@ -17,7 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->hak_akses == 1) {
+        if (Auth::user()->id_hak_akses == 1) {
             # code...
             return $next($request);
         }
