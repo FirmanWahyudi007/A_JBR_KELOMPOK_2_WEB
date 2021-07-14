@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ArtikelApiController;
 use App\Http\Controllers\Api\LoginApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,6 @@ Route::group(['namespace' => 'Api'] ,function(){
     Route::post('/login', 'LoginApiController@store')->name('login.store');
     Route::post('/register', 'RegisterApiController@store')->name('register.store');
     Route::get('/donasi', 'DonasiApiController@index')->name('donasiapi.index');
+    Route::get('/cari', 'ArtikelApiController@search')->name('artikel.search');
+    Route::get('/cari/yayasan', 'YayasanApiController@search')->name('yayasan.search');
 });
