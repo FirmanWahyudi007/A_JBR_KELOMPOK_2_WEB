@@ -96,6 +96,8 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                        @else
+                                        <li><a href="{{ route('login') }}">Login</a></li>
                                         @endif
                                     </ul>
                                 </nav>

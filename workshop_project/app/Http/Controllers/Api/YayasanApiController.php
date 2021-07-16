@@ -16,19 +16,6 @@ class YayasanApiController extends Controller
         return response()->json(['code' => 201,'message' => 'success', 'data' => $yayasan  ]);
     }
 
-    public function show($id)
-    {
-        # code...
-        $yayasan = Yayasan::find($id)->first();
-        if ($yayasan) {
-            # code...
-            return response()->json(['kode' => 201,'pesan' => 'success', 'data' => $yayasan  ]);
-        } else {
-            # code...
-            return response()->json(['kode' => 404,'pesan' => 'error', 'data' => 'Data not Found'  ]);
-        }
-        
-    }
     public function search(){ 
 
         $search_text = $_GET['query'];

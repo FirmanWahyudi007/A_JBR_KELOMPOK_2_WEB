@@ -50,7 +50,8 @@ class DonasiUserController extends Controller
     {
         # code...
         $no = 1;
-        $donasi = DetailDonasi::join('donasi', 'detail_donasi.donasi', '=', 'donasi.id')->get(['detail_donasi.*', 'donasi.nama_donasi']);
+        $id = Auth::user()->id;
+        $donasi = DetailDonasi::join('donasi', 'detail_donasi.donasi', '=', 'donasi.id')->where('users',$id)->get(['detail_donasi.*', 'donasi.nama_donasi']);
         return view('frontend.listdonasi', compact('donasi','no'));
     }
 
