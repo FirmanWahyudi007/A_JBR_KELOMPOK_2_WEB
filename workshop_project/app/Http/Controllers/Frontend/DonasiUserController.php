@@ -41,6 +41,7 @@ class DonasiUserController extends Controller
         $donate->tanggal = $date;
         $donate->nominal = $request->nominal; 
         $donate->konfirmasi = 0;
+        $donate->metode_pembayaran = $request->metode;
         $donate->users = $id;
         $donate->save();
         return Redirect::back();

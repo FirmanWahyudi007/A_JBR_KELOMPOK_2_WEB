@@ -51,6 +51,18 @@
                                 <label for="keterangan">Keterangan</label>
                                 <textarea name="keterangan" id="keterangan" cols="30" rows="5" class="form-control"></textarea>
                             </div>
+                            <div class="form-group">
+                                <label for="metode">Metode Transfer</label>
+                                <select name="metode" id="metode" class="form-control">
+                                    <option value="BCA">BCA</option>
+                                    <option value="Mandiri">Mandiri</option>
+                                    <option value="BRI">BRI</option>
+                                    <option value="BNI">BNI</option>
+                                    <option value="DANA">DANA</option>
+                                    <option value="GOPAY">GOPAY</option>
+                                    <option value="OVO">OVO</option>
+                                </select>
+                            </div>
                             <button type="submit" class="btn btn-success">Donate</button>
                         </form>
                     </div>
