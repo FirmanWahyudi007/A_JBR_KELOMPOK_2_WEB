@@ -14,10 +14,7 @@ class DonasiApiController extends Controller
     public function index()
     {
         # code...
-        $donasi = Donasi::where('is_active','1')
-            ->join('yayasan','yayasan.id','=','donasi.yayasan')
-            ->join('users','users.id','=','donasi.user')
-            ->get(['yayasan.nama_yayasan','users.name','donasi.*']);
+        $donasi = Donasi::where('is_active','1')->get();
         return response()->json(['code' => 201,'message' => 'success', 'data' => $donasi  ]);
     }
 
