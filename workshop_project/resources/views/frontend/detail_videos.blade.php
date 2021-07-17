@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <center>
-                        <video controls width="300px" height="200px" >
+                        <video controls width="920px" height="720px" >
                             <source src="{{ asset('videos/'.$videos->video)}}">
                         </video>
                         </center>

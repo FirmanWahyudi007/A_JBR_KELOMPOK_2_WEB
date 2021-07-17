@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Str;
 use Storage;
+use File;
 
 class UploadVideoController extends Controller
 {
@@ -16,8 +17,8 @@ class UploadVideoController extends Controller
             $newFileName = "";
                 $fileExt = $files->extension();
                 $newFileName = Str::random(20) . '.' . $fileExt;
-                // $newFileName = $file->getClientOriginalName(); //get original name
-                $files->storeAs('public/Video/temps/', $newFileName);
+                $path = public_path().'/videos/temp';
+                $files->move($path, $newFileName);
 
             return $newFileName;
         }
@@ -31,7 +32,7 @@ class UploadVideoController extends Controller
 
         $file = $request->getContent();
 
-        Storage::delete('Video/temps/' . $file);
+        File::delete('videos/temps/' . $file);
 
         return $file;
 

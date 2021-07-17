@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">   
             <video width="320" height="240" controls>
-                <source src="{{ url('storage/Video/'.$video->video) }}" type="video/mp4">
+                <source src="{{ asset('videos/'.$video->video) }}" type="video/mp4">
               Your browser does not support the video tag.
             </video>
         </div>

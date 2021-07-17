@@ -34,8 +34,6 @@ class DonasiApiController extends Controller
         $donate->save();
 
         $response = [
-            'code' => '201',
-            'message' => 'success',
             'data' => $donate
         ];
 

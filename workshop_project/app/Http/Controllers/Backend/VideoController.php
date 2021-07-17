@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\Models\Video;
 use Storage;
 use Auth;
+use File;
 
 class VideoController extends Controller
 {
@@ -54,7 +55,10 @@ class VideoController extends Controller
         $videos->judul = $request->judul;
         $videos->tanggal = $tanggal;
         $videos->deskripsi = $request->deskripsi;
-        Storage::move('public/Video/temps/'.$file, 'public/Video/'.$namafile);
+        $pathtemp = public_path().'/videos/temp/';
+        $path = public_path().'/videos/';
+        File::move($pathtemp.$file, $path.$namafile);
+        //Storage::move('public/Video/temps/'.$file, 'public/Video/'.$namafile);
         $videos->video = $namafile;
         $videos->user = $id;
         $videos->save();
@@ -112,7 +116,10 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        Video::where('id', $id)->delete();
+        $video = Video::where('id', $id)->first();
+        $path = public_path().'/videos/';
+        File::delete($path.$video->video);
+        $video->delete();
         return redirect()->route('video.index')->with('error', 'Video Berhasil di Hapus!');
     }
 }
