@@ -7,15 +7,20 @@ use Illuminate\Http\Request;
 use App\Models\Artikel;
 use App\Models\Donasi;
 use App\Models\Yayasan;
-
+use App\Models\Acara;
 class UserController extends Controller
 {
     public function index()
     {
         # code...
-        $donasi = Donasi::all();
+        $donasi = Donasi::where('is_active','1')->paginate(3);
         $artikel = Artikel::paginate(3);
-        $yayasan = Yayasan::all();
-        return view('frontend.home', compact('artikel','donasi','yayasan'));
+        $yayasan = Yayasan::paginate(3);
+        $acara = Acara::paginate(2);
+        $countAcara = Acara::count();
+        $countDonasi = Donasi::count();
+        $countYayasan = Yayasan::count();
+        $countArtikel = Artikel::count();
+        return view('frontend.home', compact('artikel','donasi','yayasan','acara','countAcara','countDonasi','countYayasan','countArtikel'));
     }
 }

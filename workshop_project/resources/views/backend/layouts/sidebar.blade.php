@@ -46,10 +46,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
+                    <a href="{{route('donasi.konfirmasi')}}" class="nav-link">
+                        <i class="nav-icon fas fa-check"></i>
                         <p>
-                            Data Donatur
+                            Konfirmasi Donasi
                         </p>
                     </a>
                 </li>

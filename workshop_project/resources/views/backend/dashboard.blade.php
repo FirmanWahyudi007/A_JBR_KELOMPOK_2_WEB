@@ -64,11 +64,6 @@
           Donasi
         </h3>
       </div>
-      <div class="card-body">
-        <div class="tab-content p-0">
-          <canvas id="canvas" height="300" style="height: 300px;"></canvas>
-        </div>
-      </div>
     </div>
   </div>
 </div>
@@ -79,38 +74,4 @@
 @endpush
 @push('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-<script>
-  var year = <?php echo $year; ?>;
-  var chart = <?php echo $chart; ?>;
-  var barChartData = {
-      labels: year,
-      datasets: [{
-          label: 'Donasi',
-          backgroundColor: "aquamarine",
-          data: chart
-      }]
-  };
-
-  window.onload = function() {
-      var ctx = document.getElementById("canvas").getContext("2d");
-      window.myBar = new Chart(ctx, {
-          type: 'bar',
-          data: barChartData,
-          options: {
-              elements: {
-                  rectangle: {
-                      borderWidth: 2,
-                      borderColor: '#c1c1c1',
-                      borderSkipped: 'bottom'
-                  }
-              },
-              responsive: true,
-              title: {
-                  display: true,
-                  text: 'Yearly User Joined'
-              }
-          }
-      });
-  };
-</script>
 @endpush

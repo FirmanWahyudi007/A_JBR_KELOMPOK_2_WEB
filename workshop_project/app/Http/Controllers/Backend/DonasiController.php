@@ -93,12 +93,12 @@ class DonasiController extends Controller
         return redirect()->route('donasi.index')->with('success','Data Donasi Telah Diaktifkan');
     }
 
-    public function detailDonasi()
+    public function konfirmasiDonasi()
     {
         # code...
         $no = 1;
-        $detail = DetailDonasi::join('users', 'detail_donasi.users', '=', 'users.id')->get(['detail_donasi.*', 'users.name']);
-        return view('backend.detaildonasi', compact('no','detail'));
+        $detail = DetailDonasi::join('users', 'detail_donasi.users', '=', 'users.id')->where('konfirmasi',0)->get(['detail_donasi.*', 'users.name']);
+        return view('backend.konfirmasidonasi', compact('no','detail'));
     }
 
     public function approve(Request $request,$id)
@@ -109,7 +109,7 @@ class DonasiController extends Controller
             $detail->save();
         
         
-        return redirect()->route('donasi.detail')->with('success','Donasi Dikonfirmasi');
+        return redirect()->route('donasi.konfirmasi')->with('success','Donasi Dikonfirmasi');
     }
 
     public function disapprove($id)
@@ -119,6 +119,6 @@ class DonasiController extends Controller
         File::delete('images/buktitransfer/'.$detail->bukti_transfer);
         $detail->konfirmasi = 0;
         $detail->save();
-        return redirect()->route('donasi.detail')->with('error','Bukti salah');
+        return redirect()->route('donasi.konfirmasi')->with('error','Bukti salah');
     }
 }

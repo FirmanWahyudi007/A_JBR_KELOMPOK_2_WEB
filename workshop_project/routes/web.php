@@ -39,7 +39,8 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth', 'web','admin']]
     Route::post('artikel/{id}/edit', 'ArtikelController@update')->name('artikel.updates');
     Route::put('donasi/nonactive/{donasi}','DonasiController@nonactive')->name('donasi.nonactive');
     Route::put('donasi/active/{donasi}','DonasiController@active')->name('donasi.active');
-    Route::get('detaildonasi','DonasiController@detailDonasi')->name('donasi.detail');
+    Route::get('konfirmasi','DonasiController@konfirmasiDonasi')->name('donasi.konfirmasi');
+    Route::get('detaildonasi/{id}','DonasiController@konfirmasiDonasi')->name('donasi.detail');
     Route::put('detail/approve/{detaildonasi}','DonasiController@approve')->name('detail.approve');
     Route::put('detail/disapprove/{detaildonasi}','DonasiController@disapprove')->name('detail.disapprove');
   });

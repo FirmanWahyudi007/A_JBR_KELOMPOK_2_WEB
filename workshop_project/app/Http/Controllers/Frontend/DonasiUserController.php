@@ -16,7 +16,7 @@ class DonasiUserController extends Controller
     public function index()
     {
         # code...
-        $donasi = Donasi::paginate(6);
+        $donasi = Donasi::where('is_active','1')->paginate(6);
         return view('frontend.donasi',compact('donasi'));
     }
 
