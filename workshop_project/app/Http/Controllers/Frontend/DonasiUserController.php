@@ -44,7 +44,7 @@ class DonasiUserController extends Controller
         $donate->metode_pembayaran = $request->metode;
         $donate->users = $id;
         $donate->save();
-        return Redirect::back();
+        return view('frontend.rekeningbank');
     }
 
     public function list()
