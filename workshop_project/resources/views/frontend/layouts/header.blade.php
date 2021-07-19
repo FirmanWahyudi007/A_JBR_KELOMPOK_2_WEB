@@ -80,7 +80,7 @@
                                         <li><a href="{{ route('yayasanuser.index') }}">Yayasan</a></li>
                                         <li><a href="{{route('videos.index')}}">Video</a>
                                         <li><a href="{{route('donasiuser.index')}}">Donasi</a></li>
-                                        <li><a href="{{route('videos.index')}}">Acara</a></li>
+                                        <li><a href="{{route('acarauser.index')}}">Acara</a></li>
                                         @if (Auth::user())
                                         <li><a href="#" style="color: black" >{{ Auth::user()->name }} <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">

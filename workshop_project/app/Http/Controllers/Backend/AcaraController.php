@@ -46,14 +46,16 @@ class AcaraController extends Controller
             'jam' => 'required',
             'deskripsi'=>'required',
             'thumbnail' => 'required|mimes:png,jpg,jpeg',
-            'link' => 'required'
+            'link' => 'required',
+            'tempat' => 'required'
          ]);
         $acara =  new Acara();
         $acara->nama_acara = $request->acara;
         $acara->jam_acara = $request->jam;
         $acara->tanggal_acara = $request->tanggal;
         $acara->deskripsi_acara = $request->deskripsi;
-        $acara->link_acara = $request->link;
+        $acara->link_acara = "http://".$request->link;
+        $acara->tempat = $request->tempat;
         $sampul = $request->thumbnail;
         $sampulName = $sampul->getClientOriginalName();
         $sampul->move(public_path('images/thumbnail'),$sampulName);

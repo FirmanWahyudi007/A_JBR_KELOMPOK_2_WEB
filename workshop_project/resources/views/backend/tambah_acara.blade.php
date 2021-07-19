@@ -19,7 +19,7 @@
         </ul>
     </div>
     @endif
-    <form method="POST" action="{{ isset($acara)? route('acara.update',$acara->id) :route('acara.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ isset($acara)? route('acara.update',$acara->id) :route('acara.store') }}" enctype="multipart/form-data" autocomplete="off">
         {!! csrf_field() !!}
         {!! isset($acara) ? method_field('PUT'):'' !!}
         <input type="hidden" name="id" value="{{ isset($acara) ? $acara->id : '' }}"> <br>
@@ -27,6 +27,10 @@
             <div class="form-group">
                 <label for="acara">Acara</label>
                 <input type="text" class="form-control" name="acara" id="acara" placeholder="Masukkan Nama Acara" value="{{ isset($acara) ? $acara->nama_acara : Request::old('acara') }}">
+            </div>
+            <div class="form-group">
+                <label for="tempat">Tempat</label>
+                <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Masukkan Tempat Acara" value="{{ isset($acara) ? $acara->tempat : Request::old('tempat') }}">
             </div>
             <div class="form-group">
                 <label for="acara">Jam</label>

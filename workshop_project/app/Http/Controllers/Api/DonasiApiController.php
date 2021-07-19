@@ -59,20 +59,14 @@ class DonasiApiController extends Controller
     public function uploadBukti(Request $request)
     {
         $detail = DetailDonasi::find($request->id);
-        if ($request->file('bukti')) {
-            $bukti = $request->file('bukti');
+        $detail->bukti_transfer = $request->file('bukti_transfer');
+            $bukti = $request->file('bukti_transfer');
             $namabukti = $request->id.'-'.$bukti->getClientOriginalName();
             $pathbukti = $bukti->move('images/buktitransfer',$namabukti);
             $detail->bukti_transfer = $namabukti;
             $detail->konfirmasi = 2;
             $detail->save();
-            $response = [
-                'code' => '201',
-                'message' => 'success',
-                'data' => $detail
-            ];
-        }
 
-        return response()->json($response);
+        return response()->json($detail);
     }
 }

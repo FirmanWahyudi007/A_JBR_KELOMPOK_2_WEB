@@ -46,6 +46,11 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'judul' => 'required',
+            'tanggal' => 'required',
+            'deskripsi'=>'required|min:10',
+         ]);
         $id = Auth::user()->id;
         $tanggal = Carbon::parse($request->tanggal);
         $file = $request->video;

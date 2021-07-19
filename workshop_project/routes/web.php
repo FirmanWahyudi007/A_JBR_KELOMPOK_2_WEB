@@ -55,6 +55,8 @@ Route::group(['namespace' => 'Frontend'] ,function(){
   Route::get('/donasi', 'DonasiUserController@index')->name('donasiuser.index');
   Route::get('/donasi/{id}', 'DonasiUserController@show')->name('donasiuser.show');
   Route::post('/donasi', 'DonasiUserController@donate')->name('donate');
+  Route::get('/acara', 'AcaraUserController@index')->name('acarauser.index');
+  Route::get('/acara/{id}', 'AcaraUserController@show')->name('acarauser.show');
   Route::get('/listdonasi', 'DonasiUserController@list')->name('donasiuser.list');
   Route::get('/uploadbukti/donasi/{id}', 'DonasiUserController@uploadbukti')->name('donasiuser.upload');
   Route::put('/uploadbukti/donasi/{id}', 'DonasiUserController@updatebukti')->name('donasiuser.update');

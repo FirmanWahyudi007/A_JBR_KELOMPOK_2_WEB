@@ -30,7 +30,9 @@ Route::group(['namespace' => 'Api'] ,function(){
     Route::get('/donasi', 'DonasiApiController@index')->name('donasiapi.index');
     Route::get('/cari', 'ArtikelApiController@search')->name('artikel.search');
     Route::get('/cari/yayasan', 'YayasanApiController@search')->name('yayasan.search');
+    Route::get('/acara','AcaraApiController@index');
+    Route::get('/video','VideoApiController@index');
     Route::post('/donate', 'DonasiApiController@donate')->name('donate.api')->middleware('auth:sanctum');
-    Route::put('/uploadbukti', 'DonasiApiController@uploadBukti')->name('donate.uploadBukti')->middleware('auth:sanctum');
+    Route::put('/uploadbukti', 'DonasiApiController@uploadBukti')->name('donate.uploadBukti');
     Route::get('/listdonate', 'DonasiApiController@listDonate')->name('donate.list')->middleware('auth:sanctum');
 });

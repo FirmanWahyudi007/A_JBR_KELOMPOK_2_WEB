@@ -10,7 +10,7 @@ Video
     <!-- /.card-header -->
     <!-- form start -->
     <form method="POST" action="{{ isset($video)? route('video.update',$video->id) :route('video.store') }}"
-        enctype="multipart/form-data">
+        enctype="multipart/form-data" autocomplete="off">
         {!! csrf_field() !!}
         {!! isset($video) ? method_field('PUT'):'' !!}
         <input type="hidden" name="id" value="{{ isset($video) ? $video->id : '' }}"> <br>
