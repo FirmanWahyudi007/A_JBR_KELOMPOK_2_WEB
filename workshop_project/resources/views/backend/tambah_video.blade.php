@@ -9,6 +9,16 @@ Video
     </div>
     <!-- /.card-header -->
     <!-- form start -->
+    @if ($errors->any())
+    <div class="alert alert-danger" style="margin-top: 10px">
+        <strong>Whoops!</strong> Ada Masalah dengan input anda.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form method="POST" action="{{ isset($video)? route('video.update',$video->id) :route('video.store') }}"
         enctype="multipart/form-data" autocomplete="off">
         {!! csrf_field() !!}
@@ -17,8 +27,8 @@ Video
         <div class="card-body">
             <div class="form-group">
                 <label for="judul">Judul</label>
-                <input type="text" class="form-control" id="judul" name="judul" placeholder="Masukkan Judul Video"
-                    value="{{ isset($video) ? $video->judul : '' }}">
+                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" placeholder="Masukkan Judul Video"
+                    value="{{ isset($video) ? $video->judul : Request::old('judul') }}">
             </div>
             <div class="form-group">
                 <label>Tanggal:</label>
@@ -27,15 +37,11 @@ Video
             </div>
             <div class="form-group">
                 <label for="penerima">Deskripsi</label>
-                <textarea class="form-control" name="deskripsi">{{ isset($video) ? $video->deskripsi : '' }}</textarea>
+                <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi">{{ isset($video) ? $video->deskripsi : Request::old('deskripsi') }}</textarea>
             </div>
-            @if(isset($video))
-
-            @else
             <div class="form-group">
-                <input type="file" name="video" id="video">
+                <input class="form-control @error('video') is-invalid @enderror" type="file" name="video" id="video">
             </div>
-            @endif
         </div>
         <!-- /.card-body -->
 
@@ -46,7 +52,6 @@ Video
 </div>
 @endsection
 @push('css')
-<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 <!-- daterange picker -->
 <link rel="stylesheet" href="{{asset('backend/plugins/daterangepicker/daterangepicker.css')}}">
 <!-- iCheck for checkboxes and radio inputs -->
@@ -67,7 +72,6 @@ Video
 <link rel="stylesheet" href="{{asset('backend/plugins/dropzone/min/dropzone.min.css')}}">
 @endpush
 @push('js')
-<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 <!-- bs-custom-file-input -->
 <script src="{{asset('backend/plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- Select2 -->
@@ -87,22 +91,6 @@ Video
 <script src="{{asset('backend/plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
 <!-- dropzonejs -->
 <script src="{{asset('backend/plugins/dropzone/min/dropzone.min.js')}}"></script>
-<script>
-    const inputElement = document.querySelector('input[id="video"]');
-    // Create a FilePond instance
-    const pond = FilePond.create(inputElement);
-    //setup upload file
-    FilePond.setOptions({
-        server: {
-            url: '/video/upload',
-            process: '/add',
-            revert: '/delete',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        }
-    });
-</script>
 <script>
     $(function () {
         //Initialize Select2 Elements

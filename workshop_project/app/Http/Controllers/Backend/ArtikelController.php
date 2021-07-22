@@ -42,14 +42,14 @@ class ArtikelController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'url_artikel' => 'required',
             'sampul' => 'required',
             'judul_artikel' => 'required',
             'isi_artikel' => 'required',
             'tanggal' => 'required',
         ]);
+        $url = str_replace(' ', '-', strtolower($request->judul_artikel));
         $id = Auth::user()->id;
-        $url_artikel = $request->url_artikel;
+        $url_artikel = $url;
         $sampul = $request->sampul;
         $judul_artikel = $request->judul_artikel;
         $isi_artikel = $request->isi_artikel;
@@ -100,7 +100,8 @@ class ArtikelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $url_artikel = $request->url_artikel;
+        $url = str_replace(' ', '-', strtolower($request->judul_artikel));
+        $url_artikel = $url;
         $judul_artikel = $request->judul_artikel;
         $isi_artikel = $request->isi_artikel;
         $tanggal = $request->tanggal;

@@ -32,24 +32,48 @@
                             <h2>{{ $donasi->nama_donasi }}</h2>
                         </a>
                         <h4>{{ $donasi->penerima }}</h4>
+                        @if ($errors->any())
+                        <div class="alert alert-danger" style="margin-top: 10px">
+                            <strong>Whoops!</strong> Ada Masalah dengan input anda.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <form action="{{ route('donate') }}" method="post">
                             {!! csrf_field() !!}
                             <input type="hidden" name="donasi" value="{{ $donasi->id }}">
                             <div class="form-group">
                                 <label for="nama">Nama</label>
-                                <input type="text" id="nama" class="form-control" value="{{ Auth::user()->name }}" disabled>
+                                <input type="text" id="nama" class="form-control" value="{{ Auth::user()->name }}"
+                                    disabled>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" id="email" class="form-control" value="{{ Auth::user()->email }}" disabled>
+                                <input type="text" id="email" class="form-control " value="{{ Auth::user()->email }}"
+                                    disabled>
                             </div>
                             <div class="form-group">
                                 <label for="nominal">Nominal</label>
-                                <input type="text" name="nominal" id="nominal" class="form-control">
+                                <input type="text" name="nominal" id="nominal" value="{{Request::old('nominal')}}"
+                                    class="form-control  @error('nominal') is-invalid @enderror">
+                                @error('nominal')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="keterangan">Keterangan</label>
-                                <textarea name="keterangan" id="keterangan" cols="30" rows="5" class="form-control"></textarea>
+                                <textarea name="keterangan" id="keterangan" cols="30" rows="5"
+                                    class="form-control  @error('keterangan') is-invalid @enderror">{{Request::old('keterangan')}}</textarea>
+                                @error('keterangan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="metode">Metode Transfer</label>
@@ -57,10 +81,7 @@
                                     <option value="BCA">BCA</option>
                                     <option value="Mandiri">Mandiri</option>
                                     <option value="BRI">BRI</option>
-                                    <option value="BNI">BNI</option>
                                     <option value="DANA">DANA</option>
-                                    <option value="GOPAY">GOPAY</option>
-                                    <option value="OVO">OVO</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-success">Donate</button>

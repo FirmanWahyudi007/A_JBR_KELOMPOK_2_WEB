@@ -11,7 +11,7 @@ Donasi
     <!-- form start -->
     <form id="donasi_form" method="POST"
         action="{{ isset($donasi)? route('donasi.update',$donasi->id) :route('donasi.store') }}"
-        enctype="multipart/form-data">
+        enctype="multipart/form-data" autocomplete="off">
         {!! csrf_field() !!}
         {!! isset($donasi) ? method_field('PUT'):'' !!}
         <input type="hidden" name="id" value="{{ isset($donasi) ? $donasi->id : '' }}"> <br>

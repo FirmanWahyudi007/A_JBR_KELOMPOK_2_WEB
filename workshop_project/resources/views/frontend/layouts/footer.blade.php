@@ -6,37 +6,12 @@
                 <div class="col-xl-4 col-md-6 col-lg-4 ">
                     <div class="footer_widget">
                         <div class="footer_logo">
-                            <a href="#">
-                                <img src="{{ asset('frontend/img/footer_logo.png')}}" alt="">
+                            <a href="{{route('home')}}">
+                                <h2>SiPenyaut</h2>
                             </a>
                         </div>
                         <p class="address_text">Lorem ipsum dolor sit amet, <br> consectetur adipiscing elit, sed do <br> eiusmod tempor incididunt ut labore.
                         </p>
-                        <div class="socail_links">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <i class="ti-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="ti-twitter-alt"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-dribbble"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
                     </div>
                 </div>
                 <div class="col-xl-2 col-md-6 col-lg-2">
@@ -45,12 +20,11 @@
                             Services
                         </h3>
                         <ul class="links">
-                            <li><a href="#">Donate</a></li>
-                            <li><a href="#">Sponsor</a></li>
-                            <li><a href="#">Fundraise</a></li>
-                            <li><a href="#">Volunteer</a></li>
-                            <li><a href="#">Partner</a></li>
-                            <li><a href="#">Jobs</a></li>
+                            <li><a href="{{route('donasiuser.index')}}">Donate</a></li>
+                            <li><a href="{{route('videos.index')}}">Videos</a></li>
+                            <li><a href="{{route('acarauser.index')}}">Acara</a></li>
+                            <li><a href="{{route('yayasanuser.index')}}">Yayasan</a></li>
+                            <li><a href="{{route('artikell.index')}}">Artikel</a></li>
                         </ul>
                     </div>
                 </div>
@@ -60,10 +34,9 @@
                             Contacts
                         </h3>
                         <div class="contacts">
-                            <p>+2(305) 587-3407 <br>
-                                info@loveuscharity.com <br>
-                                Flat 20, Reynolds Neck, North
-                                Helenaville, FV77 8WS
+                            <p>+62 85231481241 <br>
+                                sipenyaut@gmail.com <br>
+                                Jalan Batu Raden 20, Sumbersari, Jember
                             </p>
                         </div>
                     </div>

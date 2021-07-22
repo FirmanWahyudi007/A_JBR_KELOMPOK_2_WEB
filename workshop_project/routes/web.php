@@ -40,7 +40,7 @@ Route::group(['namespace' => 'Backend', 'middleware' => ['auth', 'web','admin']]
     Route::put('donasi/nonactive/{donasi}','DonasiController@nonactive')->name('donasi.nonactive');
     Route::put('donasi/active/{donasi}','DonasiController@active')->name('donasi.active');
     Route::get('konfirmasi','DonasiController@konfirmasiDonasi')->name('donasi.konfirmasi');
-    Route::get('detaildonasi/{id}','DonasiController@konfirmasiDonasi')->name('donasi.detail');
+    Route::get('detaildonasi/{id}','DonasiController@DetailDonasi')->name('donasi.detail');
     Route::put('detail/approve/{detaildonasi}','DonasiController@approve')->name('detail.approve');
     Route::put('detail/disapprove/{detaildonasi}','DonasiController@disapprove')->name('detail.disapprove');
   });
@@ -66,7 +66,7 @@ Route::group(['namespace' => 'Frontend'] ,function(){
 Auth::routes();
 
 Route::get('/user', [App\Http\Controllers\HomeController::class, 'index'])->name('user');
-Route::prefix('/video/upload')->group(function () {
-  Route::post('/add', [UploadVideoController::class, 'store']);
-  Route::delete('/delete', [UploadVideoController::class, 'destroy']);
+Route::get('/clear-cache', function() {
+  $exitCode = Artisan::call('config:cache');
+  return 'DONE'; //Return anything
 });

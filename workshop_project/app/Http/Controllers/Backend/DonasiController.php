@@ -70,12 +70,24 @@ class DonasiController extends Controller
     public function update(Request $request, $id)
     {
         $date = Carbon::parse($request->tanggal);
-        DB::table('donasi')->where('id',$request->id)->update([
-                'tanggal'=>$date,
-                'nama_donasi'=>$request->donasi,
-                'yayasan'=>$request->penerima,
-                'keterangan'=>$request->keterangan,
-        ]);
+        $donasi = Donasi::find($id);
+        $donasi->nama_donasi = $request->donasi;
+        $donasi->tanggal = $date;
+        if($request->penerima){
+            $donasi->penerima = $request->penerima;
+        }
+        if($request->yayasan){
+            $donasi->yayasan = $request->yayasan;
+        }
+        if($request->hasfile('banner')){
+            File::delete('images/'.$donasi->banner);
+            $banner = $request->file('banner');
+            $namabanner = $request->donasi.' '.$banner->getClientOriginalName();
+            $pathbanner = $banner->move('images',$namabanner);
+            $donasi->banner = $namabanner;
+        }
+        $donasi->keterangan = $request->keterangan;
+        $donasi->save();
         return redirect()->route('donasi.index')->with('success','Data Donasi Telah Diperbaharui');
     }
     public function nonactive($id)
@@ -97,8 +109,31 @@ class DonasiController extends Controller
     {
         # code...
         $no = 1;
-        $detail = DetailDonasi::join('users', 'detail_donasi.users', '=', 'users.id')->where('konfirmasi',0)->get(['detail_donasi.*', 'users.name']);
+        $detail = DetailDonasi::join(
+            'users', 
+            'detail_donasi.users', 
+            '=', 
+            'users.id')
+            ->where('konfirmasi',2)
+            ->get(['detail_donasi.*', 'users.name']);
         return view('backend.konfirmasidonasi', compact('no','detail'));
+    }
+
+    public function DetailDonasi($id)
+    {
+        $donasi = Donasi::find($id);
+        $sumDonasi =  DetailDonasi::where('konfirmasi',1)
+            ->where('donasi',$id)
+            ->sum('nominal');
+        $detail = DetailDonasi::join(
+            'users', 
+            'detail_donasi.users', 
+            '=', 
+            'users.id')
+            ->where('donasi',$id)
+            ->where('konfirmasi',1)
+            ->get(['detail_donasi.*', 'users.name']);
+            return view('backend.detaildonasi' ,compact('donasi','detail','sumDonasi'));
     }
 
     public function approve(Request $request,$id)

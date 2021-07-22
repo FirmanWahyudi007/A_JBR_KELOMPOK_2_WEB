@@ -9,6 +9,16 @@
                         <h3 class="card-title">Upload Bukti Transfer Donasi</h3>
                     </div>
                     <div class="card-body">
+                        @if ($errors->any())
+                        <div class="alert alert-danger" style="margin-top: 10px">
+                            <strong>Whoops!</strong> Ada Masalah dengan input anda.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        @endif
                         <form action="{{ route('donasiuser.update', $detail->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -19,7 +29,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="bukti">Bukti</label>
-                                <input class="form-control" type="file" name="bukti" id="bukti">
+                                <input class="form-control  @error('bukti') is-invalid @enderror" type="file" name="bukti" id="bukti">
+                                @error('bukti')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                             <button class="btn btn-success" type="submit">Sumbit</button>
                         </form>

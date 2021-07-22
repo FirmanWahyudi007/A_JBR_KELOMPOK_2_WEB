@@ -53,18 +53,21 @@ class VideoController extends Controller
          ]);
         $id = Auth::user()->id;
         $tanggal = Carbon::parse($request->tanggal);
-        $file = $request->video;
         $judul = $request->judul;
-        $namafile = $judul.'-'.$file;
         $videos = new Video;
         $videos->judul = $request->judul;
         $videos->tanggal = $tanggal;
+        if ($request->hasFile('video')) {
+            $files = $request->file('video');
+            $newFileName = "";
+            $fileExt = $files->extension();
+            $newFileName = $judul . '.' . $fileExt;
+            $path = public_path().'/videos';
+            $files->move($path, $newFileName);
+            $videos->video = $newFileName;
+        }
         $videos->deskripsi = $request->deskripsi;
-        $pathtemp = public_path().'/videos/temp/';
-        $path = public_path().'/videos/';
-        File::move($pathtemp.$file, $path.$namafile);
         //Storage::move('public/Video/temps/'.$file, 'public/Video/'.$namafile);
-        $videos->video = $namafile;
         $videos->user = $id;
         $videos->save();
         return redirect()->route('video.index')->with('success','Video Telah Disimpan');

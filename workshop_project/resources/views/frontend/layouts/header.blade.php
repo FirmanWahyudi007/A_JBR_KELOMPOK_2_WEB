@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Si - Penyaut</title>
+    <title>SiPenyaut</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,8 +37,8 @@
                         <div class="col-xl-6 col-md-12 col-lg-8">
                             <div class="short_contact_list">
                                 <ul>
-                                    <li><a href="#"> <i class="fa fa-phone"></i> +1 (454) 556-5656</a></li>
-                                    <li><a href="#"> <i class="fa fa-envelope"></i>Yourmail@gmail.com</a></li>
+                                    <li><a href="#"> <i class="fa fa-phone"></i> +62 85231481241</a></li>
+                                    <li><a href="#"> <i class="fa fa-envelope"></i>sipenyaut@gmail.com</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -66,8 +66,8 @@
                     <div class="row align-items-center">
                         <div class="col-xl-3 col-lg-3">
                             <div class="logo">
-                                <a href="index.html">
-                                    <h2>Si - Penyaut</h2>
+                                <a href="{{route('home')}}">
+                                    <h2>SiPenyaut</h2>
                                 </a>
                             </div>
                         </div>

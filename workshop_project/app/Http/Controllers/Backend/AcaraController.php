@@ -45,7 +45,7 @@ class AcaraController extends Controller
             'tanggal' => 'required',
             'jam' => 'required',
             'deskripsi'=>'required',
-            'thumbnail' => 'required|mimes:png,jpg,jpeg',
+            'thumbnail' => 'required|mimes:png,jpg,jpeg,jfif',
             'link' => 'required',
             'tempat' => 'required'
          ]);

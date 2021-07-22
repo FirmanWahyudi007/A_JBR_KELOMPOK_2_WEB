@@ -33,6 +33,11 @@ class DonasiUserController extends Controller
     public function donate(Request $request)
     {
         # code...
+        $this->validate($request, [
+            'keterangan' => 'required',
+            'metode' => 'required',
+            'nominal' => 'required|numeric',
+         ]);
         $id = Auth::user()->id;
         $date = Carbon::now()->toDateTimeString();
         $donate = new DetailDonasi;
@@ -66,6 +71,9 @@ class DonasiUserController extends Controller
     public function updatebukti(Request $request)
     {
         # code...
+        $this->validate($request, [
+            'bukti'=>'required|mimes:png,jpeg,jpg,jfif',
+         ]);
         if ($request->hasfile('bukti')) {
             $bukti = $request->file('bukti');
             $namabukti = $request->id.'-'.$bukti->getClientOriginalName();

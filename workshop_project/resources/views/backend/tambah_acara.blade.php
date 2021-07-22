@@ -26,27 +26,57 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="acara">Acara</label>
-                <input type="text" class="form-control" name="acara" id="acara" placeholder="Masukkan Nama Acara" value="{{ isset($acara) ? $acara->nama_acara : Request::old('acara') }}">
+                <input type="text" class="form-control @error('acara') is-invalid @enderror" name="acara" id="acara" placeholder="Masukkan Nama Acara" value="{{ isset($acara) ? $acara->nama_acara : Request::old('acara') }}">
+                @error('acara')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="tempat">Tempat</label>
-                <input type="text" class="form-control" name="tempat" id="tempat" placeholder="Masukkan Tempat Acara" value="{{ isset($acara) ? $acara->tempat : Request::old('tempat') }}">
+                <input type="text" class="form-control @error('tempat') is-invalid @enderror" name="tempat" id="tempat" placeholder="Masukkan Tempat Acara" value="{{ isset($acara) ? $acara->tempat : Request::old('tempat') }}">
+                @error('tempat')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="acara">Jam</label>
-                <input type="time" class="form-control" name="jam" id="jam" placeholder="Masukkan Nama Acara" value="{{ isset($acara) ? $acara->jam_acara : Request::old('jam') }}">
+                <input type="time" class="form-control @error('jam') is-invalid @enderror" name="jam" id="jam" placeholder="Masukkan Nama Acara" value="{{ isset($acara) ? $acara->jam_acara : Request::old('jam') }}">
+                @error('jam')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
-                <label>Date:</label>
-                <input type="date" class="form-control" name="tanggal" id="tanggal"value="{{ isset($acara) ? $acara->tanggal_acara : Request::old('tanggal') }}">
+                <label>Tanggal</label>
+                <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal" id="tanggal"value="{{ isset($acara) ? $acara->tanggal_acara : Request::old('tanggal') }}">
+                @error('tanggal')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="acara">Deskripsi</label>
-                <textarea class="form-control" name="deskripsi" id="deskripsi" cols="30" rows="10">{{ isset($acara) ? $acara->deskripsi_acara : Request::old('deskripsi') }}</textarea>
+                <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" id="deskripsi" cols="30" rows="10">{{ isset($acara) ? $acara->deskripsi_acara : Request::old('deskripsi') }}</textarea>
+                @error('deskripsi')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
-                <label for="acara">Link Acara</label>
-                <input type="text" class="form-control" name="link" id="link" placeholder="Masukkan Nama Acara" value="{{ isset($acara) ? $acara->link_acara : Request::old('link') }}">
+                <label for="acara">Link / Maps Acara</label>
+                <input type="text" class="form-control @error('link') is-invalid @enderror" name="link" id="link" placeholder="Masukkan Link atau Maps Acara" value="{{ isset($acara) ? $acara->link_acara : Request::old('link') }}">
+                @error('link')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="exampleInputFile">Thumbnail</label>

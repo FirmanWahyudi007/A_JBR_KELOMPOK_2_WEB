@@ -13,10 +13,6 @@
         @csrf
         <div class="card-body">
             <div class="form-group">
-                <label for="url">Url Artikel</label>
-                <input type="text" class="form-control" id="url_artikel" name="url_artikel" placeholder="Masukkan Url artikel" value="{{$artikel->url_artikel}}">
-            </div>
-            <div class="form-group">
                 <label for="judul">Judul</label>
                 <input type="text" class="form-control" id="judul_artikel" name="judul_artikel" placeholder="Masukkan Judul artikel" value="{{$artikel->judul_artikel}}">
             </div>

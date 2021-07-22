@@ -29,7 +29,7 @@
                 <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->nominal }}</td>
+                    <td>Rp.{{number_format($item->nominal,2) }}</td>
                     <td><a href="{{ url('images/buktitransfer',$item->bukti_transfer) }}" target="_blank">Lihat</a></td>
                     <td>
                         @if ($item->konfirmasi == 2)

@@ -23,7 +23,7 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->nama_donasi }}</td>
-                                        <td>{{ $item->nominal }}</td>
+                                        <td>Rp.{{number_format($item->nominal,2) }}</td>
                                         <td>
                                             @if ($item->konfirmasi == 0)
                                                 <a href="{{ route('donasiuser.upload',$item->id) }}">Upload Bukti</a>

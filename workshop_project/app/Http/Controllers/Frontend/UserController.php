@@ -18,7 +18,7 @@ class UserController extends Controller
         $yayasan = Yayasan::paginate(3);
         $acara = Acara::paginate(2);
         $countAcara = Acara::count();
-        $countDonasi = Donasi::count();
+        $countDonasi = Donasi::where('is_active',1)->count();
         $countYayasan = Yayasan::count();
         $countArtikel = Artikel::count();
         return view('frontend.home', compact('artikel','donasi','yayasan','acara','countAcara','countDonasi','countYayasan','countArtikel'));

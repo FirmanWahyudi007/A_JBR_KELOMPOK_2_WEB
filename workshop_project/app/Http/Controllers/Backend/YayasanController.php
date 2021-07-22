@@ -20,6 +20,12 @@ class YayasanController extends Controller
         return view('backend.tambah_yayasan', compact('yayasan'));
     }
     public function store(Request $request){
+        $this->validate($request, [
+            'yayasan' => 'required',
+            'alamat' => 'required',
+            'notelp' => 'required|numeric',
+            'dokumentasi'=>'required|mimes:png,jpeg,jpg,jfif',
+         ]);
         if ($request->hasFile('dokumentasi')) {
             # code...
             $dokumentasi = $request->file('dokumentasi');

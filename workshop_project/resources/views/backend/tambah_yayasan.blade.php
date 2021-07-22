@@ -9,6 +9,16 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
+    @if ($errors->any())
+    <div class="alert alert-danger" style="margin-top: 10px">
+        <strong>Whoops!</strong> Ada Masalah dengan input anda.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <form id="yayasan_form" method="POST" action="{{ isset($yayasan)? route('yayasan.update',$yayasan->id) :route('yayasan.store') }}" enctype="multipart/form-data">
         {!! csrf_field() !!}
         {!! isset($yayasan) ? method_field('PUT'):'' !!}
@@ -16,18 +26,33 @@
         <div class="card-body">
             <div class="form-group">
                 <label for="yayasan">Judul</label>
-                <input type="text" class="form-control" name="yayasan" id="yayasan" placeholder="Masukkan Nama Yayasan" 
-                value="{{ isset($yayasan) ? $yayasan->nama_yayasan : '' }}">
+                <input type="text" class="form-control  @error('yayasan') is-invalid @enderror" name="yayasan" id="yayasan" placeholder="Masukkan Nama Yayasan" 
+                value="{{ isset($yayasan) ? $yayasan->nama_yayasan : Request::old('yayasan') }}">
+                @error('yayasan')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="yayasan">Alamat</label>
-                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Masukkan Alamat Yayasan"
-                value="{{ isset($yayasan) ? $yayasan->alamat : '' }}">
+                <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" id="alamat" placeholder="Masukkan Alamat Yayasan"
+                value="{{ isset($yayasan) ? $yayasan->alamat : Request::old('alamat') }}">
+                @error('alamat')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="notelp">No Telp</label>
-                <input type="text" class="form-control" name="notelp"  id="notelp" placeholder="Masukkan Nama No Telp"
-                value="{{ isset($yayasan) ? $yayasan->no_telp : ''}}">
+                <input type="text" class="form-control @error('notelp') is-invalid @enderror" name="notelp"  id="notelp" placeholder="Masukkan Nama No Telp"
+                value="{{ isset($yayasan) ? $yayasan->no_telp : Request::old('notelp')}}">
+                @error('notelp')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="dokumentasi">File input Dokumentasi</label>
