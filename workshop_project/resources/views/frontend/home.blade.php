@@ -67,8 +67,9 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
+                @foreach ($donasi as $all)
                 <div class="causes_active owl-carousel">
-                    @foreach ($donasi as $all)
+                    
                     <div class="single_cause">
                         <div class="thumb">
                             <img src="{{ asset('images/'.$all->banner)}}" alt="">
@@ -76,11 +77,12 @@
                         <div class="causes_content">
                             <h4>{{ $all->nama_donasi }}</h4>
                             <p>{{ $all->keterangan }}</p>
-                            <a class="read_more" href="{{route('donasi.show', $all->id)}}">Donate</a>
+                            <a class="read_more" href="{{route('donasiuser.show', $all->id)}}">Donate</a>
                         </div>
                     </div>
-                    @endforeach
+                    
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -81,7 +81,7 @@
                                     <option value="BCA">BCA</option>
                                     <option value="Mandiri">Mandiri</option>
                                     <option value="BRI">BRI</option>
-                                    <option value="DANA">DANA</option>
+                                    <option value="DANA">GOPAY</option>
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-success">Donate</button>

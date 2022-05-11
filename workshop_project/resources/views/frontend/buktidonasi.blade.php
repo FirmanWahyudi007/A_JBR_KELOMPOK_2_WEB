@@ -20,7 +20,7 @@
                         </div>
                         @endif
                         <form action="{{ route('donasiuser.update', $detail->id) }}" method="POST" enctype="multipart/form-data">
-                            @csrf
+                            {!! csrf_field() !!}
                             @method('PUT')
                             <input type="hidden" name="id" value="{{ $detail->id }}">
                             <div class="form-group">

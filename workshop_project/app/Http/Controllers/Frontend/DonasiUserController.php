@@ -71,11 +71,7 @@ class DonasiUserController extends Controller
     public function updatebukti(Request $request)
     {
         # code...
-        $this->validate($request, [
-            'bukti'=>'required|mimes:png,jpeg,jpg,jfif',
-         ]);
-        if ($request->hasfile('bukti')) {
-            $bukti = $request->file('bukti');
+        if ($bukti = $request->file('bukti')) {
             $namabukti = $request->id.'-'.$bukti->getClientOriginalName();
             $pathbukti = $bukti->move('images/buktitransfer',$namabukti);
             $detail = DetailDonasi::find($request->id);
